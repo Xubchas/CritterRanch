@@ -287,7 +287,7 @@ GameObject:
   - component: {fileID: 1326540321}
   - component: {fileID: 1326540320}
   m_Layer: 0
-  m_Name: HarvIdle_0
+  m_Name: Harv
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

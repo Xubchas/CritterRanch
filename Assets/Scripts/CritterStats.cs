@@ -8,4 +8,5 @@ public class CritterStats : ScriptableObject
 
     //how often this critter moves (value from 0 to 100)
     public int moveFrequency;
+    public float nibsMake;
 }

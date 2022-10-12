@@ -39,13 +39,14 @@ public class CritterController : MonoBehaviour
         directions.Add(DOWN);
         directions.Add(LEFT);
         directions.Add(RIGHT);
+        //find controller
+        m_controller = GameObject.FindGameObjectWithTag("GameController").GetComponent<RanchController>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        //find controller
-        m_controller = GameObject.FindGameObjectWithTag("GameController").GetComponent<RanchController>();
+
     }
 
     // Update is called once per frame
@@ -58,6 +59,7 @@ public class CritterController : MonoBehaviour
         if(willMove()){
             AttemptMove();
         }
+        m_controller.nibs += m_stats.nibsMake/10f;
     }
 
     //returns whether the critter will move this tick

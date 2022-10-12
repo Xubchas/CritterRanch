@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class RanchController : MonoBehaviour
 {
@@ -19,6 +20,20 @@ public class RanchController : MonoBehaviour
          {1,1,1,1,1,1,1,1,1,1}}    
     ;
 
+    //REPLACE THESE WITH DATA MANAGER VERSION
+    private float m_nibs = 0;
+
+    public TextMeshProUGUI nibsText;
+
+    public float nibs{
+        get{
+            return m_nibs;
+        }
+        set{
+            m_nibs = value;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +50,7 @@ public class RanchController : MonoBehaviour
     IEnumerator Ticker(){
         while(true){
             TickRanch();
+            nibsText.text =  "" + Mathf.Floor(nibs);
             yield return new WaitForSeconds(0.1f);
         }
     }

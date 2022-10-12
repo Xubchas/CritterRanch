@@ -12,5 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5b5a7f734b28f44c8ea1cfbbb2285f0, type: 3}
   m_Name: Harv
   m_EditorClassIdentifier: 
-  moveFrequency: 50
-  nibsMake: 1
+  type: 
+  moveFrequency: 25
+  nibsMakeMin: 1
+  nibsMakeMax: 2
+  nibsEat: 0
+  cashMakeMin: 0
+  cashMakeMax: 0
+  cashEat: 0
+  maxAge: 600
+  minSell: 0
+  maxSell: 0

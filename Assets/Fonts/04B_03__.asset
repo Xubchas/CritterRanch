@@ -57,9 +57,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: 04B_03__
   m_EditorClassIdentifier: 
-  hashCode: 0
+  hashCode: -1324525638
   material: {fileID: -1596409640316871922}
-  materialHashCode: 0
+  materialHashCode: -2073817766
   m_Version: 1.1.0
   m_SourceFontFileGUID: b330a5b59e944f947b0d48e01e954862
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: b330a5b59e944f947b0d48e01e954862, type: 3}
@@ -327,15 +327,15 @@ MonoBehaviour:
     m_AtlasIndex: 0
   - m_Index: 20
     m_Metrics:
-      m_Width: 2
+      m_Width: 4
       m_Height: 5
       m_HorizontalBearingX: 0
       m_HorizontalBearingY: 5
-      m_HorizontalAdvance: 3
+      m_HorizontalAdvance: 5
     m_GlyphRect:
-      m_X: 37
+      m_X: 36
       m_Y: 268
-      m_Width: 2
+      m_Width: 4
       m_Height: 5
     m_Scale: 1
     m_AtlasIndex: 0

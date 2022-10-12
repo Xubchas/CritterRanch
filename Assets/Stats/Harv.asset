@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Harv
   m_EditorClassIdentifier: 
   moveFrequency: 50
+  nibsMake: 1

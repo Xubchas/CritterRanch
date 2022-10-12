@@ -22,7 +22,7 @@ public class RanchController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        StartCoroutine(Ticker());
     }
 
     // Update is called once per frame
@@ -47,7 +47,7 @@ public class RanchController : MonoBehaviour
 
     public bool Move(int x, int y, int[] direction){
         int newX = x + direction[1];
-        int newY = x + direction[0];
+        int newY = y + direction[0];
 
         if(checkLoc[newY,newX] == 0){
             checkLoc[newY,newX] = 1;

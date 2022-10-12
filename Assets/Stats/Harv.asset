@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5b5a7f734b28f44c8ea1cfbbb2285f0, type: 3}
   m_Name: Harv
   m_EditorClassIdentifier: 
-  moveFrequency: 0
+  moveFrequency: 50

@@ -33,6 +33,12 @@ public class DataManager : MonoBehaviour
         private set;
     }
 
+    private float _time;
+    public float time{
+        get;
+        set;
+    }
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -46,10 +52,6 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    public void AddSlot(){
-        maxSlots++;
-    }
-
     [Serializable]
     private class SaveGame{
         public string playerName;
@@ -61,11 +63,13 @@ public class DataManager : MonoBehaviour
 
     }
 
-    [Serializable]
-    private class Critter{
+    
+}
+
+[Serializable]
+public class Critter{
         public string type;
         public string name;
-        public float hunger;
+        public int hunger;
         public float age;
-    }
 }

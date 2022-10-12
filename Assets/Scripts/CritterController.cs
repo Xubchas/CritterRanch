@@ -33,6 +33,8 @@ public class CritterController : MonoBehaviour
     //move speed
     private const float MOVE_TIME = 1f;
 
+    public Critter me;
+
     void Awake(){
         //initialize directions
         directions.Add(UP);
@@ -59,7 +61,8 @@ public class CritterController : MonoBehaviour
         if(willMove()){
             AttemptMove();
         }
-        m_controller.nibs += m_stats.nibsMake/10f;
+        Make();
+        Age();
     }
 
     //returns whether the critter will move this tick
@@ -93,5 +96,24 @@ public class CritterController : MonoBehaviour
             yield return null;
         }
         
+    }
+
+    void Make(){
+        if(m_stats.nibsEat > 0 && m_controller.nibs < m_stats.nibsEat*RanchController.TICK_LENGTH){
+            me.hunger--;
+        }
+        if(m_stats.cashEat > 0 && m_controller.cash < m_stats.cashEat*RanchController.TICK_LENGTH){
+            me.hunger--;
+        }
+        float nibsToMake = m_stats.nibsMakeMin + (m_stats.nibsMakeMax-m_stats.nibsMakeMin * (me.age/ m_stats.maxAge)); 
+        float cashToMake = m_stats.cashMakeMin + (m_stats.cashMakeMax-m_stats.cashMakeMax * (me.age / m_stats.maxAge)); 
+
+        m_controller.nibs += (nibsToMake*RanchController.TICK_LENGTH - m_stats.nibsEat*RanchController.TICK_LENGTH);
+        m_controller.cash += (cashToMake*RanchController.TICK_LENGTH - m_stats.cashEat*RanchController.TICK_LENGTH);
+
+    }
+
+    void Age(){
+        me.age += RanchController.TICK_LENGTH;
     }
 }

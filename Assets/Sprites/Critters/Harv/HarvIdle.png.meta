@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 08bf3a044180fc44bacce30d2d7bea89
+guid: b8deeb7e5dd388a42bf079f22cc5119d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -69,7 +69,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: -1
+    textureFormat: 4
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: critteranimtest_0
+      name: HarvIdle_0
       rect:
         serializedVersion: 2
         x: 0
@@ -131,14 +131,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 52857955001f2014c8c2fb7891f78588
-      internalID: -209686028
+      spriteID: 5b1288a41c778734fad277ff86c65598
+      internalID: 1743580795
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: critteranimtest_1
+      name: HarvIdle_1
       rect:
         serializedVersion: 2
         x: 16
@@ -152,14 +152,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 97f3f4f3f9d34544a9f8afa115d59772
-      internalID: 1196583193
+      spriteID: 0499fa7a4077f0049a060334d366dac2
+      internalID: 950297732
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: critteranimtest_2
+      name: HarvIdle_2
       rect:
         serializedVersion: 2
         x: 32
@@ -173,14 +173,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4c891900f35deb6438e037558de1fab7
-      internalID: -847992572
+      spriteID: e9ef9b9cc9f16b14399d1514d2482d81
+      internalID: -46307360
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: critteranimtest_3
+      name: HarvIdle_3
       rect:
         serializedVersion: 2
         x: 48
@@ -194,8 +194,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ad01079d4dc667f48aad1df7ae21b7cc
-      internalID: 614451844
+      spriteID: 731fe68f2bb567a42a12729a4260a910
+      internalID: -544577153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HarvIdle_4
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ce3adcb64c4e144b8d3d2052c4f6a50
+      internalID: -534950205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HarvIdle_5
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 88da0487195a0f847b4bb7c18959289c
+      internalID: -213124750
       vertices: []
       indices: 
       edges: []
@@ -211,10 +253,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      critteranimtest_0: -209686028
-      critteranimtest_1: 1196583193
-      critteranimtest_2: -847992572
-      critteranimtest_3: 614451844
+      HarvIdle_3: -544577153
+      HarvIdle_1: 950297732
+      HarvIdle_4: -534950205
+      HarvIdle_0: 1743580795
+      HarvIdle_2: -46307360
+      HarvIdle_5: -213124750
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

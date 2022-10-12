@@ -44,4 +44,17 @@ public class RanchController : MonoBehaviour
             critter.GetComponent<CritterController>().TickCritter();
         }
     }
+
+    public bool Move(int x, int y, int[] direction){
+        int newX = x + direction[1];
+        int newY = x + direction[0];
+
+        if(checkLoc[newY,newX] == 0){
+            checkLoc[newY,newX] = 1;
+            checkLoc[y,x] = 0;
+            return true;
+        }
+
+        return false;
+    }
 }

@@ -131,8 +131,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5b1288a41c778734fad277ff86c65598
-      internalID: 1743580795
+      spriteID: 35663d689b8dfb74b8c77b6eee4bb5cd
+      internalID: 2144941431
       vertices: []
       indices: 
       edges: []
@@ -152,8 +152,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0499fa7a4077f0049a060334d366dac2
-      internalID: 950297732
+      spriteID: 40e79b0a5bf2fbe4295b27af48b15b77
+      internalID: -2111614185
       vertices: []
       indices: 
       edges: []
@@ -173,8 +173,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e9ef9b9cc9f16b14399d1514d2482d81
-      internalID: -46307360
+      spriteID: 18cf7d531c11e2c429aa64df2c79c931
+      internalID: 284900788
       vertices: []
       indices: 
       edges: []
@@ -194,8 +194,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 731fe68f2bb567a42a12729a4260a910
-      internalID: -544577153
+      spriteID: e185fa6efa54ccd4b94022b9f15f7d03
+      internalID: 811375273
       vertices: []
       indices: 
       edges: []
@@ -215,8 +215,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0ce3adcb64c4e144b8d3d2052c4f6a50
-      internalID: -534950205
+      spriteID: 0cda89d334995294cb4cedec737b0dbf
+      internalID: -422485656
       vertices: []
       indices: 
       edges: []
@@ -236,8 +236,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 88da0487195a0f847b4bb7c18959289c
-      internalID: -213124750
+      spriteID: 389cc5d79a45d9d4bb949189a2acf261
+      internalID: -681908861
       vertices: []
       indices: 
       edges: []
@@ -253,12 +253,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      HarvIdle_3: -544577153
-      HarvIdle_1: 950297732
-      HarvIdle_4: -534950205
-      HarvIdle_0: 1743580795
-      HarvIdle_2: -46307360
-      HarvIdle_5: -213124750
+      HarvIdle_3: 811375273
+      HarvIdle_1: -2111614185
+      HarvIdle_4: -422485656
+      HarvIdle_0: 2144941431
+      HarvIdle_2: 284900788
+      HarvIdle_5: -681908861
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

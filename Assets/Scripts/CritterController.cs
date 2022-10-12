@@ -56,7 +56,6 @@ public class CritterController : MonoBehaviour
 
     public void TickCritter(){
         if(willMove()){
-            Debug.Log("Attempting move");
             AttemptMove();
         }
     }

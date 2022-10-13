@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+//CLASS DESCRIPTION
+//Ranch Controller is the man Game Controller, during runtime the authoritative game statistics are held here
 public class RanchController : MonoBehaviour
 {
 
+    //How long, in seconds, a tick lasts
     public const float TICK_LENGTH = 0.1f;
     //all critters will be stored in this list
     public List<GameObject> critterObjects = new List<GameObject>();
@@ -21,10 +24,7 @@ public class RanchController : MonoBehaviour
          {1,1,1,1,1,1,1,1,1,1}}    
     ;
 
-
-    public TextMeshProUGUI nibsText;
-    public TextMeshProUGUI cashText;
-
+    //Game stats
     private float _nibs;
     public float nibs {
         get{
@@ -32,6 +32,7 @@ public class RanchController : MonoBehaviour
         }
         set{
             _nibs = value;
+            //Sets minimum and maximum nibs values
             if(_nibs > 99999f){
                 _nibs = 99999;
             }
@@ -48,6 +49,7 @@ public class RanchController : MonoBehaviour
         }
         set{
             _cash = value;
+            //sets minimum and maximum cash values
             if(_cash > 99999f){
                 _cash = 99999;
             }
@@ -60,9 +62,14 @@ public class RanchController : MonoBehaviour
     public int slots;
     public float time;
 
+    //UI Elements to enable/disable
     public GameObject shop;
     public GameObject shopButton;
     public GameObject farmButton;
+
+    //UI Elements to keep updated
+    public TextMeshProUGUI nibsText;
+    public TextMeshProUGUI cashText;
 
     // Start is called before the first frame update
     void Start()
@@ -71,6 +78,7 @@ public class RanchController : MonoBehaviour
         StartCoroutine(Ticker());
     }
 
+    //Takes whatever DataManager loaded or initialized and applies it to the game
     void InitializeRanch(){
         nibs = DataManager.instance.nibs;
         cash = DataManager.instance.cash;
@@ -84,6 +92,7 @@ public class RanchController : MonoBehaviour
         else{
             AddCritter(DataManager.instance.getStat("Harv"), "");
         }
+        UpdateUI();
     }
 
     // Update is called once per frame
@@ -92,7 +101,7 @@ public class RanchController : MonoBehaviour
         time += Time.deltaTime;
     }
 
-    //ticks every 0.1 seconds
+    //ticks every TICK_LENGTH seconds
     IEnumerator Ticker(){
         while(true){
             TickRanch();
@@ -101,12 +110,17 @@ public class RanchController : MonoBehaviour
         }
     }
 
+    //goes through every critter and tells it to do its actions for that tick
     void TickRanch(){
         foreach(GameObject critter in critterObjects){
             critter.GetComponent<CritterController>().TickCritter();
         }
     }
 
+    //Receives the current position of the critter and a direction of motion
+    //checks the location array for a valid move
+    //if valid, updates array and returns true
+    //if invalid, return false
     public bool Move(int x, int y, int[] direction){
         int newX = x + direction[1];
         int newY = y + direction[0];
@@ -120,10 +134,12 @@ public class RanchController : MonoBehaviour
         return false;
     }
 
+    //Transfers data to DataManager for safekeeping and save/loading
     void UpdateDataManager(){
 
     }
 
+    //Pauses Game, Opens Shop
     public void OpenShop(){
         Time.timeScale = 0;
         shopButton.SetActive(false);
@@ -131,6 +147,7 @@ public class RanchController : MonoBehaviour
         shop.SetActive(true);
     }
 
+    //Unpauses Game, Closes Shop
     public void CloseShop(){
         Time.timeScale = 1;
         shopButton.SetActive(true);
@@ -139,6 +156,8 @@ public class RanchController : MonoBehaviour
     }
 
     //POLYMORHISM: overloaded method AddCritter()
+
+    //Adds new critter, receives critter type and name
     public void AddCritter(CritterStats stats, string name){
         GameObject newCritter = Instantiate(stats.prefab);
         int [] validPos = GetValidPos();
@@ -148,6 +167,7 @@ public class RanchController : MonoBehaviour
         checkLoc[validPos[1],validPos[0]] = 1;
     }
 
+    //Adds critter based on existing critter data
     public void AddCritter(Critter critter){
         GameObject newCritter = Instantiate(DataManager.instance.getStat(critter.type).prefab);
         int [] validPos = GetValidPos();
@@ -157,18 +177,20 @@ public class RanchController : MonoBehaviour
         checkLoc[validPos[1],validPos[0]] = 1;
     }
 
+    //Checks for empty space in array, returns a random valid position
     int[] GetValidPos(){
         bool foundspot = false;
         int tryX = 0;
         int tryY = 0;
         while(!foundspot){
-            tryX = Random.Range(1,9);
-            tryY = Random.Range(1,6);
+            tryX = Random.Range(1,checkLoc.GetLength(1));
+            tryY = Random.Range(1,checkLoc.GetLength(0));
             foundspot = checkLoc[tryY,tryX] == 0;
         } 
         return new int[] {tryX, tryY};
     }
 
+    //Updates UI elements that need updating
     public void UpdateUI(){
         nibsText.text =  "" + Mathf.Floor(nibs);
         cashText.text =  "" + Mathf.Floor(cash);

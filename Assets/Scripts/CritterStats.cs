@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//CLASS DESCRIPTION
+//This class keeps the immutable characteristics of critter types
 [CreateAssetMenu]
 public class CritterStats : ScriptableObject
 {

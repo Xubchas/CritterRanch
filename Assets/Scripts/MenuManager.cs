@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+//CLASS DESCRIPTION
+//Menu Manager runs in the main menu, controls the loading of the Ranch (Main) Scene
 public class MenuManager : MonoBehaviour
 {
 

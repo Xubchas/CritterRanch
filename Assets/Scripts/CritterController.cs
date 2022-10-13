@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//CLASS DESCRIPTION
+//This class manages critter movement and tick actions (make, eat)
 public class CritterController : MonoBehaviour
 {
     //position variables
@@ -33,6 +35,7 @@ public class CritterController : MonoBehaviour
     //move speed
     private const float MOVE_TIME = 1f;
 
+    //holds mutable stats
     public Critter me;
 
     void Awake(){
@@ -45,18 +48,7 @@ public class CritterController : MonoBehaviour
         m_controller = GameObject.FindGameObjectWithTag("GameController").GetComponent<RanchController>();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    //Calls all tick methods
     public void TickCritter(){
         if(willMove()){
             AttemptMove();
@@ -69,6 +61,7 @@ public class CritterController : MonoBehaviour
     public bool willMove(){
         //check whether cooling down
         if(tickCooldown > 0){
+            //countdown cooldown
             tickCooldown--;
             return false;
         }
@@ -78,16 +71,18 @@ public class CritterController : MonoBehaviour
     //attempts a move
     void AttemptMove(){
         tickCooldown = COOLDOWN;
+        //chooses a random direction to move in
+        int[] randomDir = directions[Random.Range(0,directions.Count)];
         //moves the critter if it is allowed by ranch controller
-        int[] randomDir = directions[Random.Range(0,4)];
         if(m_controller.Move(m_x,m_y,randomDir)){
             m_x += randomDir[1];
             m_y += randomDir[0];
-            StartCoroutine(Lerp(m_x,m_y));
+            StartCoroutine(LerpMove(m_x,m_y));
         }
     }
 
-    IEnumerator Lerp(int destX, int destY){
+    //Uses a lerp interposition to move the critter
+    IEnumerator LerpMove(int destX, int destY){
         float timeElapsed = 0;
         Vector2 destination = new Vector2(X_ZERO + destX, Y_ZERO - destY);
         while(timeElapsed < MOVE_TIME){
@@ -98,6 +93,7 @@ public class CritterController : MonoBehaviour
         
     }
 
+    //adds nibs and cash accorfing to critter stats
     void Make(){
         if(m_stats.nibsEat > 0 && m_controller.nibs < m_stats.nibsEat*RanchController.TICK_LENGTH){
             me.hunger--;
@@ -113,16 +109,20 @@ public class CritterController : MonoBehaviour
 
     }
 
+    //Increments Age of critter
     void Age(){
         me.age += RanchController.TICK_LENGTH;
     }
 
+    //Allows ranch controller to set a position
+    //ONLY CALLED during critter instantiate
     public void SetPos(int x, int y){
         m_x = x;
         m_y = y;
         transform.position = new Vector2(X_ZERO + x, Y_ZERO - y);
     }
 
+    //sets "me" data
     public void SetCritter(Critter critter){
         me = critter;
     }

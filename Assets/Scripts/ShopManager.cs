@@ -2,13 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//CLASS DESCRIPTION
+//Shop Manager primarly manages the Shop UI and basic functions
 public class ShopManager : MonoBehaviour
 {
+    //Ranch controller
+    private RanchController m_controller;
+
+
+    //Scroll Buttons
     public GameObject upButton;
     public GameObject downButton;
 
+    //Prefabs for dynamic listings
     public GameObject pagePrefab;
     public GameObject listingPrefab;
+
+    //Page indescing
     public List<GameObject> pages;
     public int currentPage = 0;
     
@@ -18,33 +28,37 @@ public class ShopManager : MonoBehaviour
     //number of nibs bought for 1 cash
     private const float CASH_TO_NIBS = 5;
 
-    private RanchController m_controller;
+    //number of listings per page
+    private const int LISTINGS_MAX = 3;
+    private const int LISTING_YSIZE = 128;
+    
 
     void Awake(){
+        //Finds Controller
         m_controller = GameObject.FindGameObjectWithTag("GameController").GetComponent<RanchController>();
-    }
-
-    void Start()
-    {
         GenerateListings();
-        
     }
 
+    //Takes the master list of Critter types and generates shop lisitngs for each critter
     void GenerateListings(){
-        int listingsInPage = 3;
+        //page 0 has max listings already
+        int listingsInPage = LISTINGS_MAX;
         int currentPage = 0;
+        //iterates through critter types
         foreach(CritterStats critter in DataManager.instance.critterMasterList){
-            if(listingsInPage == 3){
+            if(listingsInPage == LISTINGS_MAX){
+                //Make new page
                 GameObject newPage = Instantiate(pagePrefab);
-                newPage.transform.parent = gameObject.transform;
+                newPage.transform.SetParent(gameObject.transform);
                 pages.Add(newPage);
                 currentPage++;
                 newPage.gameObject.name = "PAGE " + currentPage;
                 listingsInPage = 0;
             }
+            //Place Listing
             GameObject newListing = Instantiate(listingPrefab);
-            newListing.transform.position -= new Vector3(0,128*listingsInPage,0);
-            newListing.transform.parent = pages[currentPage].transform;
+            newListing.transform.position -= new Vector3(0,LISTING_YSIZE*listingsInPage,0);
+            newListing.transform.SetParent(pages[currentPage].transform);
             listingsInPage++;
             newListing.GetComponent<ListingManager>().UpdateListing(critter);
             
@@ -52,6 +66,7 @@ public class ShopManager : MonoBehaviour
 
     }
 
+    //Scrolls Up the shop pages, disabling up arrow if it reaches the first page
     public void ScrollUp(){
         if(currentPage > 0){
             pages[currentPage].SetActive(false);
@@ -67,6 +82,7 @@ public class ShopManager : MonoBehaviour
         }
     }
 
+    //Scrolls Down the shop pages, disabling the down arrow if it reaches the last page
     public void ScrollDown(){
         if(currentPage < pages.Count - 1){
             pages[currentPage].SetActive(false);
@@ -83,8 +99,10 @@ public class ShopManager : MonoBehaviour
         }
     }
 
+    //Adds nibs, deducts cash according to constant exchange rate
     public void PurchaseNibs(int nibsToPurchase){
         if (m_controller.cash < (float) nibsToPurchase / CASH_TO_NIBS){
+            //do nothing if not enough cash
             return;
         }
 
@@ -94,8 +112,10 @@ public class ShopManager : MonoBehaviour
 
     }
 
+    //Adds cash, deducts nibs according to constant exchange rate
     public void SellNibs(int nibsToSell){
         if (m_controller.nibs < nibsToSell){
+            //do nothing if not enough nibs
             return;
         }
 

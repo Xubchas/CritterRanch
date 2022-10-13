@@ -32,6 +32,11 @@ public class ListingManager : MonoBehaviour
     //stats for this listing
     public CritterStats stats;
 
+    private ShopManager m_manager;
+
+    void Awake(){
+        m_manager = GameObject.FindGameObjectWithTag("ShopManager").GetComponent<ShopManager>();
+    }
     //places stats data in appropriate UI fields
     public void UpdateListing(){
         critterName.text = stats.type;
@@ -60,7 +65,6 @@ public class ListingManager : MonoBehaviour
     }
 
     public void Purchase(){
-        //Add purchased critter to ranch
-        Debug.Log(stats.name + " Purchased!");
+        m_manager.PurchaseCritter(stats);
     }
 }

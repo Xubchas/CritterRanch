@@ -124,7 +124,17 @@ public class ShopManager : MonoBehaviour
         m_controller.cash += (float) nibsToSell / NIBS_TO_CASH;
         m_controller.nibs -= nibsToSell;
         m_controller.UpdateUI();
+    }
 
+    public void PurchaseCritter(CritterStats stats){
+        if(m_controller.cash < stats.cost){
+            return;
+        }
+
+        m_controller.cash -= stats.cost;
+        m_controller.UpdateUI();
+        m_controller.AddCritter(stats, "");
+        m_controller.CloseShop();
     }
 
 

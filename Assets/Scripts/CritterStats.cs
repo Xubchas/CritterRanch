@@ -29,4 +29,8 @@ public class CritterStats : ScriptableObject
 
     //Shop Stats
     public int cost;
+
+    //VERY IMPORTANT
+    //Critter Prefab
+    public GameObject prefab;
 }

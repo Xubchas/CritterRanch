@@ -116,4 +116,14 @@ public class CritterController : MonoBehaviour
     void Age(){
         me.age += RanchController.TICK_LENGTH;
     }
+
+    public void SetPos(int x, int y){
+        m_x = x;
+        m_y = y;
+        transform.position = new Vector2(X_ZERO + x, Y_ZERO - y);
+    }
+
+    public void SetCritter(Critter critter){
+        me = critter;
+    }
 }

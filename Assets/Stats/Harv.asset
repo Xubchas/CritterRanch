@@ -24,3 +24,4 @@ MonoBehaviour:
   minSell: 0
   maxSell: 0
   cost: 0
+  prefab: {fileID: 7229001158696659148, guid: 6ee7382e2a5412d44a74520299b5f7df, type: 3}

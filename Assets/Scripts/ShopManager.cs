@@ -13,10 +13,16 @@ public class ShopManager : MonoBehaviour
     public int currentPage = 0;
     
     //number of nibs sold for 1 cash
-    private const int NIBS_TO_CASH = 10;
+    private const float NIBS_TO_CASH = 10;
 
     //number of nibs bought for 1 cash
-    private const int CASH_TO_NIBS = 5;
+    private const float CASH_TO_NIBS = 5;
+
+    private RanchController m_controller;
+
+    void Awake(){
+        m_controller = GameObject.FindGameObjectWithTag("GameController").GetComponent<RanchController>();
+    }
 
     void Start()
     {
@@ -44,12 +50,6 @@ public class ShopManager : MonoBehaviour
             
         }
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void ScrollUp(){
@@ -84,11 +84,25 @@ public class ShopManager : MonoBehaviour
     }
 
     public void PurchaseNibs(int nibsToPurchase){
+        if (m_controller.cash < (float) nibsToPurchase / CASH_TO_NIBS){
+            return;
+        }
+
+        m_controller.cash -= (float) nibsToPurchase / CASH_TO_NIBS;
+        m_controller.nibs += nibsToPurchase;
+        m_controller.UpdateUI();
 
     }
 
     public void SellNibs(int nibsToSell){
-        
+        if (m_controller.nibs < nibsToSell){
+            return;
+        }
+
+        m_controller.cash += (float) nibsToSell / NIBS_TO_CASH;
+        m_controller.nibs -= nibsToSell;
+        m_controller.UpdateUI();
+
     }
 
 

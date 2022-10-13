@@ -90,6 +90,16 @@ public class DataManager : MonoBehaviour
         critters = new List<Critter>();
     }
 
+    public CritterStats getStat(string typeSearch){
+        foreach(CritterStats stat in critterMasterList){
+            if (stat.type == typeSearch){
+                return stat;
+            }
+        }
+
+        return null;
+    }
+
 
 
     [Serializable]
@@ -112,4 +122,11 @@ public class Critter{
         public string name;
         public int hunger;
         public float age;
+
+        public Critter(string type, string name){
+            this.type = type;
+            this.name = name;
+            hunger = 10;
+            age = 0;
+        }
 }

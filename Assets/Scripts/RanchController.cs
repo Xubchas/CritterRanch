@@ -8,8 +8,7 @@ public class RanchController : MonoBehaviour
 
     public const float TICK_LENGTH = 0.1f;
     //all critters will be stored in this list
-    public List<GameObject> critterObjects;
-    public List<Critter> critters;
+    public List<GameObject> critterObjects = new List<GameObject>();
 
     //initialize empty ranch location check
     private int[,] checkLoc = new int[7,10]
@@ -24,6 +23,7 @@ public class RanchController : MonoBehaviour
 
 
     public TextMeshProUGUI nibsText;
+    public TextMeshProUGUI cashText;
 
     private float _nibs;
     public float nibs {
@@ -67,12 +67,23 @@ public class RanchController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        InitializeRanch();
+        StartCoroutine(Ticker());
+    }
+
+    void InitializeRanch(){
         nibs = DataManager.instance.nibs;
         cash = DataManager.instance.cash;
         slots = DataManager.instance.maxSlots;
         time = DataManager.instance.time;
-        critters = DataManager.instance.critters;
-        StartCoroutine(Ticker());
+        if(DataManager.instance.critters.Count > 0){
+            foreach(Critter crit in DataManager.instance.critters){
+                AddCritter(crit);
+            }
+        }
+        else{
+            AddCritter(DataManager.instance.getStat("Harv"), "");
+        }
     }
 
     // Update is called once per frame
@@ -85,7 +96,7 @@ public class RanchController : MonoBehaviour
     IEnumerator Ticker(){
         while(true){
             TickRanch();
-            nibsText.text =  "" + Mathf.Floor(nibs);
+            UpdateUI();
             yield return new WaitForSeconds(TICK_LENGTH);
         }
     }
@@ -129,14 +140,37 @@ public class RanchController : MonoBehaviour
 
     //POLYMORHISM: overloaded method AddCritter()
     public void AddCritter(CritterStats stats, string name){
-        
+        GameObject newCritter = Instantiate(stats.prefab);
+        int [] validPos = GetValidPos();
+        newCritter.GetComponent<CritterController>().SetCritter(new Critter(stats.type, name));
+        newCritter.GetComponent<CritterController>().SetPos(validPos[0], validPos[1]);
+        critterObjects.Add(newCritter);
+        checkLoc[validPos[1],validPos[0]] = 1;
     }
 
     public void AddCritter(Critter critter){
-        
+        GameObject newCritter = Instantiate(DataManager.instance.getStat(critter.type).prefab);
+        int [] validPos = GetValidPos();
+        newCritter.GetComponent<CritterController>().SetCritter(critter);
+        newCritter.GetComponent<CritterController>().SetPos(validPos[0], validPos[1]);
+        critterObjects.Add(newCritter);
+        checkLoc[validPos[1],validPos[0]] = 1;
     }
 
-    public void PlaceCritter(){
+    int[] GetValidPos(){
+        bool foundspot = false;
+        int tryX = 0;
+        int tryY = 0;
+        while(!foundspot){
+            tryX = Random.Range(1,9);
+            tryY = Random.Range(1,6);
+            foundspot = checkLoc[tryY,tryX] == 0;
+        } 
+        return new int[] {tryX, tryY};
+    }
 
+    public void UpdateUI(){
+        nibsText.text =  "" + Mathf.Floor(nibs);
+        cashText.text =  "" + Mathf.Floor(cash);
     }
 }

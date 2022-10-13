@@ -39,6 +39,8 @@ public class DataManager : MonoBehaviour
         set;
     }
 
+    public List<CritterStats> critterMasterList;
+
     // Start is called before the first frame update
     void Awake()
     {

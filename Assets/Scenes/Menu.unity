@@ -310,6 +310,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48ce5eaef93a45a4bb62e999b0d811d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  critterMasterList:
+  - {fileID: 11400000, guid: 929de6af66cb9aa40b800784dd74dc9d, type: 2}
 --- !u!1 &255384498
 GameObject:
   m_ObjectHideFlags: 0

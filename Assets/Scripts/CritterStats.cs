@@ -6,16 +6,27 @@ using UnityEngine;
 public class CritterStats : ScriptableObject
 {
 
-    //how often this critter moves (value from 0 to 100)
+    //Name
     public string type;
+
+    //how often this critter moves (value from 0 to 100)
     public int moveFrequency;
+
+    //Nibs Stats
     public float nibsMakeMin;
     public float nibsMakeMax;
     public float nibsEat;
+
+    //Cash Stats
     public float cashMakeMin;
     public float cashMakeMax;
     public float cashEat;
+
+    //Aging stats
     public float maxAge;
     public float minSell;
     public float maxSell;
+
+    //Shop Stats
+    public int cost;
 }

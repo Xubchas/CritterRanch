@@ -9,6 +9,7 @@ public class ShopManager : MonoBehaviour
 
     public List<GameObject> pages;
     public int currentPage = 0;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -24,7 +25,7 @@ public class ShopManager : MonoBehaviour
     public void ScrollUp(){
         if(currentPage > 0){
             pages[currentPage].SetActive(false);
-            currentPage++;
+            currentPage--;
             pages[currentPage].SetActive(true);
         }
 
@@ -39,7 +40,7 @@ public class ShopManager : MonoBehaviour
     public void ScrollDown(){
         if(currentPage < pages.Count - 1){
             pages[currentPage].SetActive(false);
-            currentPage--;
+            currentPage++;
             pages[currentPage].SetActive(true);
         }
 

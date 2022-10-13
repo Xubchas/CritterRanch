@@ -60,6 +60,10 @@ public class RanchController : MonoBehaviour
     public int slots;
     public float time;
 
+    public GameObject shop;
+    public GameObject shopButton;
+    public GameObject farmButton;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -106,5 +110,19 @@ public class RanchController : MonoBehaviour
 
     void UpdateDataManager(){
 
+    }
+
+    public void OpenShop(){
+        Time.timeScale = 0;
+        shopButton.SetActive(false);
+        farmButton.SetActive(true);
+        shop.SetActive(true);
+    }
+
+    public void CloseShop(){
+        Time.timeScale = 1;
+        shopButton.SetActive(true);
+        farmButton.SetActive(false);
+        shop.SetActive(false);
     }
 }

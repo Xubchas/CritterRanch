@@ -12,6 +12,12 @@ public class ShopManager : MonoBehaviour
     public List<GameObject> pages;
     public int currentPage = 0;
     
+    //number of nibs sold for 1 cash
+    private const int NIBS_TO_CASH = 10;
+
+    //number of nibs bought for 1 cash
+    private const int CASH_TO_NIBS = 5;
+
     void Start()
     {
         GenerateListings();
@@ -75,6 +81,14 @@ public class ShopManager : MonoBehaviour
         if(currentPage > 0){
             upButton.SetActive(true);
         }
+    }
+
+    public void PurchaseNibs(int nibsToPurchase){
+
+    }
+
+    public void SellNibs(int nibsToSell){
+        
     }
 
 

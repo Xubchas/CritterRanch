@@ -71,6 +71,7 @@ public class RanchController : MonoBehaviour
         cash = DataManager.instance.cash;
         slots = DataManager.instance.maxSlots;
         time = DataManager.instance.time;
+        critters = DataManager.instance.critters;
         StartCoroutine(Ticker());
     }
 
@@ -124,5 +125,18 @@ public class RanchController : MonoBehaviour
         shopButton.SetActive(true);
         farmButton.SetActive(false);
         shop.SetActive(false);
+    }
+
+    //POLYMORHISM: overloaded method AddCritter()
+    public void AddCritter(CritterStats stats, string name){
+        
+    }
+
+    public void AddCritter(Critter critter){
+        
+    }
+
+    public void PlaceCritter(){
+
     }
 }

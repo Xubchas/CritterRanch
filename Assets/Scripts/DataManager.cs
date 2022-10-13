@@ -17,29 +17,57 @@ public class DataManager : MonoBehaviour
 
     private float _nibs;
     public float nibs{
-        get;
-        set;
+        get{
+            return _nibs;
+        }
+        set{
+            _nibs = value;
+        }
     }
 
     private float _cash;
     public float cash{
-        get;
-        set;
+        get{
+            return _cash;
+        }
+        set{
+            _cash = value;
+        }
     }
 
     private int _maxSlots;
     public int maxSlots{
-        get;
-        private set;
+        get{
+            return _maxSlots;
+        }
+        private set{
+            _maxSlots = value;
+        }
     }
 
     private float _time;
     public float time{
-        get;
-        set;
+        get{
+            return _time;
+        }
+        set{
+            _time = value;
+        }
     }
 
+    private SaveGame save;
+
     public List<CritterStats> critterMasterList;
+    
+    private List<Critter> _critters;
+    public List<Critter> critters{
+        get{
+            return _critters;
+        }
+        set{
+            _critters = value;
+        }
+    }
 
     // Start is called before the first frame update
     void Awake()
@@ -53,6 +81,16 @@ public class DataManager : MonoBehaviour
             DontDestroyOnLoad(this.gameObject);
         }
     }
+
+    public void newGame(){
+        cash = 50;
+        nibs = 0;
+        maxSlots = 3;
+        time = 0;
+        critters = new List<Critter>();
+    }
+
+
 
     [Serializable]
     private class SaveGame{

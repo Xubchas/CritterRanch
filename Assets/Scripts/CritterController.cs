@@ -38,6 +38,9 @@ public class CritterController : MonoBehaviour
     //holds mutable stats
     public Critter me;
 
+    //copy tick length const
+    public const float TICK_LENGTH = RanchController.TICK_LENGTH;
+
     void Awake(){
         //initialize directions
         directions.Add(UP);
@@ -95,18 +98,12 @@ public class CritterController : MonoBehaviour
 
     //adds nibs and cash accorfing to critter stats
     void Make(){
-        if(m_stats.nibsEat > 0 && m_controller.nibs < m_stats.nibsEat*RanchController.TICK_LENGTH){
-            me.hunger--;
+        if(m_stats.makesNibs){
+            m_controller.nibs += (m_stats.makesMin + (m_stats.makesMax * me.age/m_stats.maxAge))*TICK_LENGTH;
         }
-        if(m_stats.cashEat > 0 && m_controller.cash < m_stats.cashEat*RanchController.TICK_LENGTH){
-            me.hunger--;
+        else if (m_stats.makesCash){
+            m_controller.cash += (m_stats.makesMin + (m_stats.makesMax * me.age/m_stats.maxAge))*TICK_LENGTH;
         }
-        float nibsToMake = m_stats.nibsMakeMin + (m_stats.nibsMakeMax-m_stats.nibsMakeMin * (me.age/ m_stats.maxAge)); 
-        float cashToMake = m_stats.cashMakeMin + (m_stats.cashMakeMax-m_stats.cashMakeMax * (me.age / m_stats.maxAge)); 
-
-        m_controller.nibs += (nibsToMake*RanchController.TICK_LENGTH - m_stats.nibsEat*RanchController.TICK_LENGTH);
-        m_controller.cash += (cashToMake*RanchController.TICK_LENGTH - m_stats.cashEat*RanchController.TICK_LENGTH);
-
     }
 
     //Increments Age of critter

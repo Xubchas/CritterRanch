@@ -2575,13 +2575,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   critterObjects: []
-  nibsText: {fileID: 1436363980}
-  cashText: {fileID: 1242694307}
   slots: 0
   time: 0
   shop: {fileID: 1390538624}
   shopButton: {fileID: 968625019}
   farmButton: {fileID: 1548077118}
+  nibsText: {fileID: 1436363980}
+  cashText: {fileID: 1242694307}
 --- !u!1 &1132728311
 GameObject:
   m_ObjectHideFlags: 0

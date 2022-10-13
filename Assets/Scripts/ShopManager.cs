@@ -60,7 +60,9 @@ public class ShopManager : MonoBehaviour
             newListing.transform.position -= new Vector3(0,LISTING_YSIZE*listingsInPage,0);
             newListing.transform.SetParent(pages[currentPage].transform);
             listingsInPage++;
-            newListing.GetComponent<ListingManager>().UpdateListing(critter);
+            ListingManager newLS = newListing.GetComponent<ListingManager>();
+            newLS.stats = critter;
+            newLS.UpdateListing();
             
         }
 

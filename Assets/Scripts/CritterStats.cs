@@ -14,15 +14,16 @@ public class CritterStats : ScriptableObject
     //how often this critter moves (value from 0 to 100)
     public int moveFrequency;
 
-    //Nibs Stats
-    public float nibsMakeMin;
-    public float nibsMakeMax;
-    public float nibsEat;
+    //Make Stats
+    public bool makesNibs;
+    public bool makesCash;
+    public float makesMin;
+    public float makesMax;
 
-    //Cash Stats
-    public float cashMakeMin;
-    public float cashMakeMax;
-    public float cashEat;
+    //Eat Stats
+    public bool eatsNibs;
+    public bool eatsCash;
+    public float eats;
 
     //Aging stats
     public float maxAge;
@@ -35,4 +36,7 @@ public class CritterStats : ScriptableObject
     //VERY IMPORTANT
     //Critter Prefab
     public GameObject prefab;
+
+    //Criter Shop Icon
+    public Texture icon;
 }

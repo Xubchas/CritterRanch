@@ -157,7 +157,7 @@ public class RanchController : MonoBehaviour
 
     //POLYMORHISM: overloaded method AddCritter()
 
-    //Adds new critter, receives critter type and name
+    //Adds new critter in random spot made with critter type and name
     public void AddCritter(CritterStats stats, string name){
         GameObject newCritter = Instantiate(stats.prefab);
         int [] validPos = GetValidPos();
@@ -167,7 +167,7 @@ public class RanchController : MonoBehaviour
         checkLoc[validPos[1],validPos[0]] = 1;
     }
 
-    //Adds critter based on existing critter data
+    //Adds critter in random spot based on existing critter data
     public void AddCritter(Critter critter){
         GameObject newCritter = Instantiate(DataManager.instance.getStat(critter.type).prefab);
         int [] validPos = GetValidPos();

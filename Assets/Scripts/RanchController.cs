@@ -105,6 +105,11 @@ public class RanchController : MonoBehaviour
     //infoPopup stuff
     public GameObject infoPopup;
 
+    //bools for UI stuff
+
+    public bool paused = false;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -288,7 +293,7 @@ public class RanchController : MonoBehaviour
 
         cash -= critterToPurchase.cost;
         UpdateUI();
-        string crittername = true ? nameInput.text : "Nameless";
+        string crittername = nameInput.text != emptyInput ? nameInput.text : "Nameless";
         AddCritter(critterToPurchase, crittername);
         namePopup.SetActive(false);
         shopButton.SetActive(true);
@@ -330,10 +335,12 @@ public class RanchController : MonoBehaviour
     }
 
     public void Pause(){
+        paused = true;
         Time.timeScale = 0f;
     }
 
     public void UnPause(){
+        paused = false;
         Time.timeScale = 1f;
     }
 

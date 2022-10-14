@@ -78,7 +78,7 @@ public class DataManager : MonoBehaviour
     }
 
     //Default constants
-    public const float START_CASH = 50;
+    public const float START_CASH = 5000;
     public const float START_NIBS = 0;
     public const int START_SLOTS =3;
     public const int MAX_HUNGER = 10;

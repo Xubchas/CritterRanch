@@ -41,6 +41,9 @@ public class CritterController : MonoBehaviour
     //copy tick length const
     public const float TICK_LENGTH = RanchController.TICK_LENGTH;
 
+    //my collider
+    public Collider2D m_col;
+
     void Awake(){
         //initialize directions
         directions.Add(UP);
@@ -130,6 +133,14 @@ public class CritterController : MonoBehaviour
 
     void OnMouseDown(){
         m_controller.OpenInfoPanel(this);
+    }
+
+    void Update(){
+        if(m_controller.paused){
+            m_col.enabled = false;
+        }else{
+            m_col.enabled = true;
+        }
     }
 
 }

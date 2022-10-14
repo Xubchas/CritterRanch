@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 //CLASS DESCRIPTION
@@ -70,6 +71,8 @@ public class RanchController : MonoBehaviour
     public GameObject shopButton;
     public GameObject farmButton;
 
+ 
+
     //UI Elements to keep updated
     public TextMeshProUGUI nibsText;
     public TextMeshProUGUI cashText;
@@ -89,11 +92,25 @@ public class RanchController : MonoBehaviour
     public readonly Vector2 timeSignFarmPos = new Vector2 (400,144);
     public readonly Vector2 timeSignShopPos = new Vector2 (464,528);
 
+    //namePopup stuff
+    public GameObject namePopup;
+    public RawImage namePopupIcon;
+    private CritterStats critterToPurchase;
+    public TextMeshProUGUI nameInput;
+    public GameObject confirmButton;
+    public GameObject cancelButton;
+    public GameObject firstPurchase;
+    private string emptyInput;
+
+    //infoPopup stuff
+    public GameObject infoPopup;
+
     // Start is called before the first frame update
     void Start()
     {
+        Pause();
         InitializeRanch();
-        StartCoroutine(Ticker());
+
     }
 
     //Takes whatever DataManager loaded or initialized and applies it to the game
@@ -108,7 +125,7 @@ public class RanchController : MonoBehaviour
             }
         }
         else{
-            AddCritter(DataManager.instance.getStat("Harv"), "");
+            NameCritter(DataManager.instance.getStat("Harv"));
         }
         UpdateUI();
         UpdateCritterCounter();
@@ -162,7 +179,7 @@ public class RanchController : MonoBehaviour
 
     //Pauses Game, Opens Shop
     public void OpenShop(){
-        Time.timeScale = 0;
+        Pause();
         shopButton.SetActive(false);
         farmButton.SetActive(true);
         shop.SetActive(true);
@@ -173,7 +190,7 @@ public class RanchController : MonoBehaviour
 
     //Unpauses Game, Closes Shop
     public void CloseShop(){
-        Time.timeScale = 1;
+        UnPause();
         shopButton.SetActive(true);
         farmButton.SetActive(false);
         shop.SetActive(false);
@@ -240,4 +257,84 @@ public class RanchController : MonoBehaviour
     public void UpdateCritterCounter(){
         critterText.text = critterObjects.Count + "/" + slots;
     }
+
+    //called when naming critter
+    public void NameCritter(CritterStats stats){
+        //do all close shop processes
+        farmButton.SetActive(false);
+        shop.SetActive(false);
+        critterSign.transform.position = critterSignFarmPos;
+        timeSign.transform.position = timeSignFarmPos;
+
+        //enable naming
+        critterToPurchase = stats;
+        
+        namePopup.SetActive(true);
+        nameInput.text = "";
+        emptyInput = nameInput.text;
+        namePopupIcon.texture = critterToPurchase.icon;
+        
+    }
+
+    //cancel the naming process
+    public void CancelName(){
+        shopButton.SetActive(true);
+        namePopup.SetActive(false);
+        UnPause();
+    }
+
+    //deducts cash for critter purchase and adds them, with new name
+    public void CompletePurchase(){
+
+        cash -= critterToPurchase.cost;
+        UpdateUI();
+        string crittername = true ? nameInput.text : "Nameless";
+        AddCritter(critterToPurchase, crittername);
+        namePopup.SetActive(false);
+        shopButton.SetActive(true);
+        UnPause();
+
+    }
+
+    //called by the special first purchase button
+    public void FirstPurchase(){
+
+        string crittername = nameInput.text != emptyInput ? nameInput.text : "Nameless";
+
+        AddCritter(critterToPurchase, crittername);
+        firstPurchase.SetActive(false);
+
+        shopButton.SetActive(true);
+        confirmButton.SetActive(true);
+        cancelButton.SetActive(true);
+        namePopup.SetActive(false);
+
+        UnPause();
+        StartCoroutine(Ticker());
+    }
+
+    public void OpenInfoPanel(CritterController critterToList){
+        Pause();
+        infoPopup.SetActive(true);
+        infoPopup.GetComponent<InfoScreenManager>().UpdateInfoPage(critterToList);
+    }
+
+    public void SellCritter(CritterController critterToSell){
+        infoPopup.SetActive(false);
+        UnPause();
+        critterObjects.Remove(critterToSell.gameObject);
+        Critter critter = critterToSell.me;
+        CritterStats stats = DataManager.instance.getStat(critter.type);
+        cash += stats.minSell + ((stats.maxSell-stats.minSell) * critter.age/stats.maxAge);
+        Destroy(critterToSell.gameObject);
+    }
+
+    public void Pause(){
+        Time.timeScale = 0f;
+    }
+
+    public void UnPause(){
+        Time.timeScale = 1f;
+    }
+
 }

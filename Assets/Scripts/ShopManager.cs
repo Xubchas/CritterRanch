@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 //CLASS DESCRIPTION
@@ -38,6 +39,7 @@ public class ShopManager : MonoBehaviour
 
     //slot price listing
     public TextMeshProUGUI slotPriceText;
+
     
 
     void Awake(){
@@ -133,15 +135,13 @@ public class ShopManager : MonoBehaviour
         m_controller.UpdateUI();
     }
 
+
     public void PurchaseCritter(CritterStats stats){
         if(m_controller.cash < stats.cost || m_controller.slots == m_controller.critterObjects.Count){
             return;
         }
 
-        m_controller.cash -= stats.cost;
-        m_controller.UpdateUI();
-        m_controller.AddCritter(stats, "");
-        m_controller.CloseShop();
+        m_controller.NameCritter(stats);
     }
 
     public void PurchaseSlot(){

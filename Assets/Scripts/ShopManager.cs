@@ -34,16 +34,19 @@ public class ShopManager : MonoBehaviour
     private const int LISTINGS_MAX = 3;
     private const int LISTING_YSIZE = 128;
 
-    //slot price (WILL LIKELY CHANGE)
-    private const int SLOT_PRICE = 150;
+    //maximum allowed slots
+    public const int MAX_SLOTS = 10;
 
     //slot price listing
     public TextMeshProUGUI slotPriceText;
+    //slot price progression
+    public readonly int[] slotPrices = new int[] {50, 100, 250, 500, 1000, 5000, 10000};
 
     
 
     void Awake(){
         //Finds Controller
+        slotPriceText.text = "" + slotPrices[0];
         m_controller = GameObject.FindGameObjectWithTag("GameController").GetComponent<RanchController>();
         GenerateListings();
     }
@@ -145,12 +148,14 @@ public class ShopManager : MonoBehaviour
     }
 
     public void PurchaseSlot(){
-        if(m_controller.cash < SLOT_PRICE || m_controller.slots == 10){
+        if(m_controller.cash < slotPrices[m_controller.slots - DataManager.START_SLOTS] || m_controller.slots == MAX_SLOTS){
             return;
         }
-
+        m_controller.cash -= slotPrices[m_controller.slots - DataManager.START_SLOTS];
         m_controller.slots ++;
-        m_controller.cash -= SLOT_PRICE;
+        
+        slotPriceText.text = m_controller.slots < 10 ? "" + slotPrices[m_controller.slots - DataManager.START_SLOTS] : "N/A";
+        
         m_controller.UpdateUI();
         m_controller.UpdateCritterCounter();
     }

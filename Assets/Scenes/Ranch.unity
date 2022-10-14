@@ -4741,6 +4741,7 @@ MonoBehaviour:
   cancelButton: {fileID: 1027261105}
   firstPurchase: {fileID: 1847234843}
   infoPopup: {fileID: 1356774852}
+  paused: 0
 --- !u!1 &1132728311
 GameObject:
   m_ObjectHideFlags: 0
@@ -6101,7 +6102,7 @@ MonoBehaviour:
   pages:
   - {fileID: 804615990}
   currentPage: 0
-  slotPriceText: {fileID: 0}
+  slotPriceText: {fileID: 717157136}
 --- !u!1 &1398763170
 GameObject:
   m_ObjectHideFlags: 0

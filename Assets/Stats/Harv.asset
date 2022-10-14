@@ -21,7 +21,7 @@ MonoBehaviour:
   eatsNibs: 0
   eatsCash: 0
   eats: 0
-  maxAge: 30
+  maxAge: 300
   minSell: 2
   maxSell: 7
   cost: 10

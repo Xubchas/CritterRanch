@@ -110,7 +110,9 @@ public class CritterController : MonoBehaviour
 
     //Increments Age of critter
     void Age(){
-        me.age += RanchController.TICK_LENGTH;
+        if(me.age < m_stats.maxAge){
+            me.age += RanchController.TICK_LENGTH;
+        }
     }
 
     //Allows ranch controller to set a position

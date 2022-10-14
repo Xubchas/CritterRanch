@@ -99,10 +99,12 @@ public class CritterController : MonoBehaviour
     //adds nibs and cash accorfing to critter stats
     void Make(){
         if(m_stats.makesNibs){
-            m_controller.nibs += (m_stats.makesMin + (m_stats.makesMax * me.age/m_stats.maxAge))*TICK_LENGTH;
+            m_controller.nibs += (m_stats.makesMin + ((m_stats.makesMax - m_stats.makesMin) * me.age/m_stats.maxAge))*TICK_LENGTH;
+            m_controller.nibsPerSecond += (m_stats.makesMin + (m_stats.makesMax * me.age/m_stats.maxAge));
         }
         else if (m_stats.makesCash){
-            m_controller.cash += (m_stats.makesMin + (m_stats.makesMax * me.age/m_stats.maxAge))*TICK_LENGTH;
+            m_controller.cash += (m_stats.makesMin + ((m_stats.makesMax - m_stats.makesMin) * me.age/m_stats.maxAge))*TICK_LENGTH;
+            m_controller.cashPerSecond += (m_stats.makesMin + (m_stats.makesMax * me.age/m_stats.maxAge));
         }
     }
 

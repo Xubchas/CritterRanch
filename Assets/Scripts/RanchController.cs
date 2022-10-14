@@ -59,6 +59,9 @@ public class RanchController : MonoBehaviour
         }
     }
 
+    public float nibsPerSecond;
+    public float cashPerSecond;
+
     public int slots;
     public float time;
 
@@ -70,6 +73,21 @@ public class RanchController : MonoBehaviour
     //UI Elements to keep updated
     public TextMeshProUGUI nibsText;
     public TextMeshProUGUI cashText;
+
+    public TextMeshProUGUI nibsSecondText;
+    public TextMeshProUGUI cashSecondText;
+
+    //UI Elements to move around (and also update sometimes)
+
+    public GameObject critterSign;
+    public TextMeshProUGUI critterText;
+    public readonly Vector2 critterSignFarmPos = new Vector2 (80,144);
+    public readonly Vector2 critterSignShopPos = new Vector2 (16,528);
+
+    public GameObject timeSign;
+    public TextMeshProUGUI timeText;
+    public readonly Vector2 timeSignFarmPos = new Vector2 (400,144);
+    public readonly Vector2 timeSignShopPos = new Vector2 (464,528);
 
     // Start is called before the first frame update
     void Start()
@@ -93,6 +111,7 @@ public class RanchController : MonoBehaviour
             AddCritter(DataManager.instance.getStat("Harv"), "");
         }
         UpdateUI();
+        UpdateCritterCounter();
     }
 
     // Update is called once per frame
@@ -112,6 +131,8 @@ public class RanchController : MonoBehaviour
 
     //goes through every critter and tells it to do its actions for that tick
     void TickRanch(){
+        nibsPerSecond = 0;
+        cashPerSecond = 0;
         foreach(GameObject critter in critterObjects){
             critter.GetComponent<CritterController>().TickCritter();
         }
@@ -145,6 +166,9 @@ public class RanchController : MonoBehaviour
         shopButton.SetActive(false);
         farmButton.SetActive(true);
         shop.SetActive(true);
+        critterSign.transform.position = critterSignShopPos;
+        timeSign.transform.position = timeSignShopPos;
+
     }
 
     //Unpauses Game, Closes Shop
@@ -153,6 +177,8 @@ public class RanchController : MonoBehaviour
         shopButton.SetActive(true);
         farmButton.SetActive(false);
         shop.SetActive(false);
+        critterSign.transform.position = critterSignFarmPos;
+        timeSign.transform.position = timeSignFarmPos;
     }
 
     //POLYMORHISM: overloaded method AddCritter()
@@ -165,6 +191,7 @@ public class RanchController : MonoBehaviour
         newCritter.GetComponent<CritterController>().SetPos(validPos[0], validPos[1]);
         critterObjects.Add(newCritter);
         checkLoc[validPos[1],validPos[0]] = 1;
+        UpdateCritterCounter();
     }
 
     //Adds critter in random spot based on existing critter data
@@ -175,6 +202,7 @@ public class RanchController : MonoBehaviour
         newCritter.GetComponent<CritterController>().SetPos(validPos[0], validPos[1]);
         critterObjects.Add(newCritter);
         checkLoc[validPos[1],validPos[0]] = 1;
+        UpdateCritterCounter();
     }
 
     //Checks for empty space in array, returns a random valid position
@@ -194,5 +222,22 @@ public class RanchController : MonoBehaviour
     public void UpdateUI(){
         nibsText.text =  "" + Mathf.Floor(nibs);
         cashText.text =  "" + Mathf.Floor(cash);
+        string npstext = nibsPerSecond.ToString("F2") + "/s";
+        npstext = npstext.Replace(',','.');
+        string cpstext =  cashPerSecond.ToString("F2") + "/s";
+        cpstext = cpstext.Replace(',','.');
+        nibsSecondText.text =  npstext;
+        cashSecondText.text =  cpstext;
+
+        float hours = Mathf.Floor(time/3600f);
+        float minutes = Mathf.Floor(time/60f) % 60;
+        float seconds = Mathf.Floor(time) % 60;
+
+        timeText.text = hours.ToString("0") + ":" + minutes.ToString("00") + ":" + seconds.ToString("00");
+    }
+
+    //this counter needs far fewer updates
+    public void UpdateCritterCounter(){
+        critterText.text = critterObjects.Count + "/" + slots;
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 //CLASS DESCRIPTION
 //Shop Manager primarly manages the Shop UI and basic functions
@@ -31,6 +32,12 @@ public class ShopManager : MonoBehaviour
     //number of listings per page
     private const int LISTINGS_MAX = 3;
     private const int LISTING_YSIZE = 128;
+
+    //slot price (WILL LIKELY CHANGE)
+    private const int SLOT_PRICE = 150;
+
+    //slot price listing
+    public TextMeshProUGUI slotPriceText;
     
 
     void Awake(){
@@ -127,7 +134,7 @@ public class ShopManager : MonoBehaviour
     }
 
     public void PurchaseCritter(CritterStats stats){
-        if(m_controller.cash < stats.cost){
+        if(m_controller.cash < stats.cost || m_controller.slots == m_controller.critterObjects.Count){
             return;
         }
 
@@ -135,6 +142,17 @@ public class ShopManager : MonoBehaviour
         m_controller.UpdateUI();
         m_controller.AddCritter(stats, "");
         m_controller.CloseShop();
+    }
+
+    public void PurchaseSlot(){
+        if(m_controller.cash < SLOT_PRICE || m_controller.slots == 10){
+            return;
+        }
+
+        m_controller.slots ++;
+        m_controller.cash -= SLOT_PRICE;
+        m_controller.UpdateUI();
+        m_controller.UpdateCritterCounter();
     }
 
 

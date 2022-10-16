@@ -63,7 +63,7 @@ public class CritterController : MonoBehaviour
     }
 
     //Calls all tick methods
-    public void TickCritter(){
+    public virtual void TickCritter(){
         if(willMove()){
             AttemptMove();
         }
@@ -148,12 +148,17 @@ public class CritterController : MonoBehaviour
     }
 
     //Increments Age of critter
-    void Age(){
+    public void Age(int times = 1){
         if(isDead){
             return;
         }
-        if(me.age < m_stats.maxAge){
-            me.age += RanchController.TICK_LENGTH;
+        for(int i = 0; i < times; i++){
+            if(me.age < m_stats.maxAge){
+                me.age += RanchController.TICK_LENGTH;
+            }
+            else{
+                break;
+            }
         }
     }
 

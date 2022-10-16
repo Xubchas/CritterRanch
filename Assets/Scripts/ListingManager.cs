@@ -49,8 +49,8 @@ public class ListingManager : MonoBehaviour
             makeIcon.gameObject.SetActive(false);
             pluses.SetActive(false);
             if(stats.makesSpecial){
-                makeText.text = stats.makesSpecialText;
-                makeText.gameObject.SetActive(true);
+                specialMakeText.text = stats.makesSpecialText;
+                specialMakeText.gameObject.SetActive(true);
             }
         }
         else{

@@ -421,4 +421,9 @@ public class RanchController : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    public void ageRandom(int ticksToAge){
+        int randIndex = Random.Range(0,critterObjects.Count);
+        critterObjects[randIndex].GetComponent<CritterController>().Age(ticksToAge);
+    }
+
 }

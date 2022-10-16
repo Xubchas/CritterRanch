@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5b5a7f734b28f44c8ea1cfbbb2285f0, type: 3}
+  m_Name: Florie
+  m_EditorClassIdentifier: 
+  type: Florie
+  moveFrequency: 50
+  makesNibs: 0
+  makesCash: 0
+  makesMin: 3
+  makesMax: 10
+  makesSpecial: 1
+  makesSpecialText: Helps growth
+  eatsNibs: 0
+  eatsCash: 1
+  eats: 5
+  maxAge: 300
+  minSell: 60
+  maxSell: 125
+  cost: 75
+  prefab: {fileID: 6807483373455198985, guid: 6255f82d5dc80d649b41c7c2379029e0, type: 3}
+  idleIcon: {fileID: 2800000, guid: fca9be180d379184a8486f9fa5d49cc2, type: 3}
+  hungryIcon: {fileID: 2800000, guid: 923f984d13f21954c91377379e65ae85, type: 3}
+  deadIcon: {fileID: 2800000, guid: 4f1c7b5b012e94b4eaafd69abb1ad4b2, type: 3}

@@ -13,19 +13,19 @@ MonoBehaviour:
   m_Name: Capster
   m_EditorClassIdentifier: 
   type: Capster
-  moveFrequency: 0
+  moveFrequency: 5
   makesNibs: 1
   makesCash: 0
   makesMin: 1
   makesMax: 4
   eatsNibs: 0
   eatsCash: 1
-  eats: 0
+  eats: 1
   maxAge: 240
   minSell: 40
   maxSell: 55
   cost: 45
-  prefab: {fileID: 0}
+  prefab: {fileID: 7821500235599658961, guid: 702ece79c0308264082264fe797e7ec7, type: 3}
   idleIcon: {fileID: 2800000, guid: 53fc3244184871b4b93c93b7424f8386, type: 3}
   hungryIcon: {fileID: 2800000, guid: 84c73dc3b174aa5498dfa625e673096a, type: 3}
   deadIcon: {fileID: 2800000, guid: ffa61a368e1ed6a47a965fb645161e9b, type: 3}

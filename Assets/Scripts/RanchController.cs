@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 //CLASS DESCRIPTION
@@ -66,10 +67,12 @@ public class RanchController : MonoBehaviour
     public int slots;
     public float time;
 
-    //UI Elements to enable/disable
+    //UI Shop Elements to enable/disable
     public GameObject shop;
     public GameObject shopButton;
     public GameObject farmButton;
+    public GameObject pauseButton;
+    public GameObject playButton;
 
  
 
@@ -79,6 +82,7 @@ public class RanchController : MonoBehaviour
 
     public TextMeshProUGUI nibsSecondText;
     public TextMeshProUGUI cashSecondText;
+    public TextMeshProUGUI nameText;
 
     //UI Elements to move around (and also update sometimes)
 
@@ -109,6 +113,13 @@ public class RanchController : MonoBehaviour
 
     public bool paused = false;
 
+    //Pause Screen Stuff;
+    public GameObject pauseScreen;
+    public GameObject optionsScreen;
+
+    //Audio sliders
+    public VolumeSlider audioSlider;
+
 
     // Start is called before the first frame update
     void Start()
@@ -120,10 +131,12 @@ public class RanchController : MonoBehaviour
 
     //Takes whatever DataManager loaded or initialized and applies it to the game
     void InitializeRanch(){
+        nameText.text = DataManager.instance.playerName;
         nibs = DataManager.instance.nibs;
         cash = DataManager.instance.cash;
         slots = DataManager.instance.maxSlots;
         time = DataManager.instance.time;
+        audioSlider.UpdateVolume(DataManager.instance.volume);
         if(DataManager.instance.critters.Count > 0){
             foreach(Critter crit in DataManager.instance.critters){
                 AddCritter(crit);
@@ -178,12 +191,13 @@ public class RanchController : MonoBehaviour
     }
 
     //Transfers data to DataManager for safekeeping and save/loading
-    void UpdateDataManager(){
+    public void UpdateDataManager(){
 
     }
 
     //Pauses Game, Opens Shop
     public void OpenShop(){
+        ClosePauseScreen();
         Pause();
         shopButton.SetActive(false);
         farmButton.SetActive(true);
@@ -195,6 +209,7 @@ public class RanchController : MonoBehaviour
 
     //Unpauses Game, Closes Shop
     public void CloseShop(){
+        ClosePauseScreen();
         UnPause();
         shopButton.SetActive(true);
         farmButton.SetActive(false);
@@ -267,6 +282,7 @@ public class RanchController : MonoBehaviour
     public void NameCritter(CritterStats stats){
         //do all close shop processes
         farmButton.SetActive(false);
+        pauseButton.SetActive(false);
         shop.SetActive(false);
         critterSign.transform.position = critterSignFarmPos;
         timeSign.transform.position = timeSignFarmPos;
@@ -297,6 +313,7 @@ public class RanchController : MonoBehaviour
         AddCritter(critterToPurchase, crittername);
         namePopup.SetActive(false);
         shopButton.SetActive(true);
+        pauseButton.SetActive(true);
         UnPause();
 
     }
@@ -310,6 +327,7 @@ public class RanchController : MonoBehaviour
         firstPurchase.SetActive(false);
 
         shopButton.SetActive(true);
+        pauseButton.SetActive(true);
         confirmButton.SetActive(true);
         cancelButton.SetActive(true);
         namePopup.SetActive(false);
@@ -342,6 +360,32 @@ public class RanchController : MonoBehaviour
     public void UnPause(){
         paused = false;
         Time.timeScale = 1f;
+    }
+
+    public void OpenPauseScreen(){
+        Pause();
+        pauseScreen.SetActive(true);
+        pauseButton.SetActive(false);
+        playButton.SetActive(true);
+        critterSign.transform.position = critterSignShopPos;
+        timeSign.transform.position = timeSignShopPos;
+    }
+
+    public void ClosePauseScreen(){
+        pauseScreen.SetActive(false);
+        pauseButton.SetActive(true);
+        playButton.SetActive(false);
+        optionsScreen.SetActive(false);
+        if(!shop.activeInHierarchy){
+            critterSign.transform.position = critterSignFarmPos;
+            timeSign.transform.position = timeSignFarmPos;
+        }
+        UnPause();
+    }
+
+    public void BackToMenu(){
+        UpdateDataManager();
+        SceneManager.LoadScene(0);
     }
 
 }

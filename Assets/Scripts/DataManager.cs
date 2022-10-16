@@ -60,6 +60,8 @@ public class DataManager : MonoBehaviour
         }
     }
 
+    public string playerName;
+
     //keeps the last saved/loaded game
     private SaveGame save;
 
@@ -78,14 +80,18 @@ public class DataManager : MonoBehaviour
     }
 
     //Default constants
-    public const float START_CASH = 5000;
+    public const float START_CASH = 50000;
     public const float START_NIBS = 0;
     public const int START_SLOTS =3;
     public const int MAX_HUNGER = 10;
 
+    //volume tracking
+    public float volume;
+
     // Start is called before the first frame update
     void Awake()
     {
+        volume = 10f/15f;
         //singleton check
         if(instance != null && instance != this){
             Destroy(this.gameObject);
@@ -97,7 +103,8 @@ public class DataManager : MonoBehaviour
     }
 
     //initializes data with new game
-    public void newGame(){
+    public void newGame(string name){
+        playerName = name;
         cash = START_CASH;
         nibs = START_NIBS;
         maxSlots = START_SLOTS;

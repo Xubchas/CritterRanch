@@ -45,7 +45,7 @@ public class DataManager : MonoBehaviour
         get{
             return _maxSlots;
         }
-        private set{
+        set{
             _maxSlots = value;
         }
     }
@@ -91,6 +91,7 @@ public class DataManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        save = null;
         volume = 10f/15f;
         //singleton check
         if(instance != null && instance != this){
@@ -123,6 +124,14 @@ public class DataManager : MonoBehaviour
         return null;
     }
 
+    public bool hasSaveGame(){
+        return save != null;
+    }
+
+    public void SaveSaveGame(){
+        save = new SaveGame(playerName, nibs, cash, maxSlots, time, critters);
+    }
+
 
     //used the game's save/load data structure
     [Serializable]
@@ -133,6 +142,15 @@ public class DataManager : MonoBehaviour
         public int maxSlots;
         public float time;
         public List<Critter> critters;
+
+        public SaveGame(string playerName, float nibs, float cash, int maxSlots, float time, List<Critter> critters){
+            this.playerName = playerName;
+            this.nibs = nibs;
+            this.cash = cash;
+            this.maxSlots = maxSlots;
+            this.time = time;
+            this.critters = critters;
+        }
 
     }
 

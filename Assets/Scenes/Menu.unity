@@ -264,7 +264,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 47429083}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1726120372}
+        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
+        m_MethodName: Exit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &47429083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1819,7 +1831,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1726120372}
         m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
-        m_MethodName: StartGame
+        m_MethodName: ContinueGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3578,6 +3590,7 @@ MonoBehaviour:
   nameInput: {fileID: 588856136}
   nameScreen: {fileID: 380551218}
   audioSlider: {fileID: 987775365}
+  continueButton: {fileID: 0}
 --- !u!1 &1739160415
 GameObject:
   m_ObjectHideFlags: 0

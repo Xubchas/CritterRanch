@@ -124,8 +124,19 @@ public class RanchController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Pause();
         InitializeRanch();
+        if(time> 0){
+            Debug.Log("unpausing game");
+            firstPurchase.SetActive(false);
+
+            shopButton.SetActive(true);
+            pauseButton.SetActive(true);
+            confirmButton.SetActive(true);
+            cancelButton.SetActive(true);
+            namePopup.SetActive(false);
+            StartCoroutine(Ticker());
+            UnPause();
+        }
 
     }
 
@@ -137,8 +148,10 @@ public class RanchController : MonoBehaviour
         slots = DataManager.instance.maxSlots;
         time = DataManager.instance.time;
         audioSlider.UpdateVolume(DataManager.instance.volume);
+
         if(DataManager.instance.critters.Count > 0){
-            foreach(Critter crit in DataManager.instance.critters){
+            List<Critter> crittersToLoad = new List<Critter>(DataManager.instance.critters);
+            foreach(Critter crit in crittersToLoad){
                 AddCritter(crit);
             }
         }
@@ -192,7 +205,15 @@ public class RanchController : MonoBehaviour
 
     //Transfers data to DataManager for safekeeping and save/loading
     public void UpdateDataManager(){
-
+        DataManager.instance.nibs = nibs;
+        DataManager.instance.cash = cash;
+        DataManager.instance.time = time;
+        DataManager.instance.maxSlots = slots;
+        DataManager.instance.critters = new List<Critter>();
+        foreach(GameObject critterObj in critterObjects){
+            DataManager.instance.critters.Add(critterObj.GetComponent<CritterController>().me);
+        }
+        DataManager.instance.SaveSaveGame();
     }
 
     //Pauses Game, Opens Shop
@@ -229,6 +250,7 @@ public class RanchController : MonoBehaviour
         critterObjects.Add(newCritter);
         checkLoc[validPos[1],validPos[0]] = 1;
         UpdateCritterCounter();
+        UpdateDataManager();
     }
 
     //Adds critter in random spot based on existing critter data
@@ -240,6 +262,7 @@ public class RanchController : MonoBehaviour
         critterObjects.Add(newCritter);
         checkLoc[validPos[1],validPos[0]] = 1;
         UpdateCritterCounter();
+        UpdateDataManager();
     }
 
     //Checks for empty space in array, returns a random valid position
@@ -281,6 +304,7 @@ public class RanchController : MonoBehaviour
     //called when naming critter
     public void NameCritter(CritterStats stats){
         //do all close shop processes
+        Pause();
         farmButton.SetActive(false);
         pauseButton.SetActive(false);
         shop.SetActive(false);
@@ -350,9 +374,11 @@ public class RanchController : MonoBehaviour
         CritterStats stats = DataManager.instance.getStat(critter.type);
         cash += stats.minSell + ((stats.maxSell-stats.minSell) * critter.age/stats.maxAge);
         Destroy(critterToSell.gameObject);
+        UpdateDataManager();
     }
 
     public void Pause(){
+        UpdateDataManager();
         paused = true;
         Time.timeScale = 0f;
     }

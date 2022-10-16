@@ -148,7 +148,7 @@ public class ShopManager : MonoBehaviour
     }
 
     public void PurchaseSlot(){
-        if(m_controller.cash < slotPrices[m_controller.slots - DataManager.START_SLOTS] || m_controller.slots == MAX_SLOTS){
+        if(m_controller.slots == MAX_SLOTS || m_controller.cash < slotPrices[m_controller.slots - DataManager.START_SLOTS] ){
             return;
         }
         m_controller.cash -= slotPrices[m_controller.slots - DataManager.START_SLOTS];

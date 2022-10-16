@@ -22,7 +22,7 @@ MonoBehaviour:
   eatsCash: 0
   eats: 0
   maxAge: 300
-  minSell: 7
+  minSell: 10
   maxSell: 15
   cost: 10
   prefab: {fileID: 7229001158696659148, guid: 6ee7382e2a5412d44a74520299b5f7df, type: 3}

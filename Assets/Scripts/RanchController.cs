@@ -100,7 +100,7 @@ public class RanchController : MonoBehaviour
     public GameObject namePopup;
     public RawImage namePopupIcon;
     private CritterStats critterToPurchase;
-    public TextMeshProUGUI nameInput;
+    public TMP_InputField nameInput;
     public GameObject confirmButton;
     public GameObject cancelButton;
     public GameObject firstPurchase;
@@ -315,7 +315,8 @@ public class RanchController : MonoBehaviour
         critterToPurchase = stats;
         
         namePopup.SetActive(true);
-        nameInput.text = "";
+        nameInput.text = string.Empty;
+        Debug.Log(nameInput.text);
         emptyInput = nameInput.text;
         namePopupIcon.texture = critterToPurchase.idleIcon;
         

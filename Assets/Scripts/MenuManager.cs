@@ -11,7 +11,7 @@ using TMPro;
 public class MenuManager : MonoBehaviour
 {
 
-    public TextMeshProUGUI nameInput;
+    public TMP_InputField nameInput;
     public GameObject nameScreen;
     private string emptyInput;
 

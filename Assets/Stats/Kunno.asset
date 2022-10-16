@@ -22,9 +22,9 @@ MonoBehaviour:
   eatsCash: 0
   eats: 3
   maxAge: 150
-  minSell: 35
-  maxSell: 65
-  cost: 55
+  minSell: 25
+  maxSell: 45
+  cost: 35
   prefab: {fileID: 6144403736014874743, guid: 8cfb45043c188b54bb1f82741f28ebec, type: 3}
   idleIcon: {fileID: 2800000, guid: d64b90826afc8204ea772101e701a935, type: 3}
   hungryIcon: {fileID: 2800000, guid: e65aca788518b2c4c8f7c9f4dc6a047e, type: 3}

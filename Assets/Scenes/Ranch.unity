@@ -6660,7 +6660,7 @@ MonoBehaviour:
   timeText: {fileID: 1427053755}
   namePopup: {fileID: 1445711120}
   namePopupIcon: {fileID: 781770382}
-  nameInput: {fileID: 620979576}
+  nameInput: {fileID: 1356751277}
   confirmButton: {fileID: 582369618}
   cancelButton: {fileID: 1027261105}
   firstPurchase: {fileID: 1847234843}

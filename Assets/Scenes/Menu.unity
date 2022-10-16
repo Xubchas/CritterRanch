@@ -213,7 +213,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 1b899daaa9936dd4bb9c8607c6fb50c6, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -733,7 +733,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 1b899daaa9936dd4bb9c8607c6fb50c6, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -1777,7 +1777,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 1b899daaa9936dd4bb9c8607c6fb50c6, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -2734,7 +2734,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 1b899daaa9936dd4bb9c8607c6fb50c6, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -3590,7 +3590,7 @@ MonoBehaviour:
   nameInput: {fileID: 588856136}
   nameScreen: {fileID: 380551218}
   audioSlider: {fileID: 987775365}
-  continueButton: {fileID: 0}
+  continueButton: {fileID: 737601035}
 --- !u!1 &1739160415
 GameObject:
   m_ObjectHideFlags: 0

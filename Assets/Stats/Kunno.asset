@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5b5a7f734b28f44c8ea1cfbbb2285f0, type: 3}
-  m_Name: Harv
+  m_Name: Kunno
   m_EditorClassIdentifier: 
-  type: Harv
-  moveFrequency: 25
-  makesNibs: 1
-  makesCash: 0
+  type: Kunno
+  moveFrequency: 50
+  makesNibs: 0
+  makesCash: 1
   makesMin: 1
   makesMax: 2
-  eatsNibs: 0
+  eatsNibs: 1
   eatsCash: 0
-  eats: 0
-  maxAge: 300
-  minSell: 7
-  maxSell: 15
-  cost: 10
-  prefab: {fileID: 7229001158696659148, guid: 6ee7382e2a5412d44a74520299b5f7df, type: 3}
-  icon: {fileID: 2800000, guid: 02fc4c787beecd948a0cd15691ca1980, type: 3}
+  eats: 3
+  maxAge: 150
+  minSell: 35
+  maxSell: 65
+  cost: 55
+  prefab: {fileID: 0}
+  icon: {fileID: 0}

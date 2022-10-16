@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5b5a7f734b28f44c8ea1cfbbb2285f0, type: 3}
+  m_Name: Blobman
+  m_EditorClassIdentifier: 
+  type: Blobman
+  moveFrequency: 5
+  makesNibs: 0
+  makesCash: 0
+  makesMin: 0
+  makesMax: 0
+  makesSpecial: 1
+  makesSpecialText: Sells high
+  eatsNibs: 1
+  eatsCash: 0
+  eats: 5
+  maxAge: 300
+  minSell: 10
+  maxSell: 500
+  cost: 50
+  prefab: {fileID: 2877497156987432285, guid: 3c8eacbbddf9e9e4aabe4eec483d4acf, type: 3}
+  idleIcon: {fileID: 2800000, guid: 205b5c7a3c5157343997d1eeb32b8251, type: 3}
+  hungryIcon: {fileID: 2800000, guid: 4a528dac35cac2048bb46e3f130001b3, type: 3}
+  deadIcon: {fileID: 2800000, guid: fb300be83446bbc479043f787b53c176, type: 3}

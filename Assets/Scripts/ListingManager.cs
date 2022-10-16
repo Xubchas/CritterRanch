@@ -23,6 +23,8 @@ public class ListingManager : MonoBehaviour
     public TextMeshProUGUI makeText;
     public TextMeshProUGUI eatText;
     public TextMeshProUGUI costText;
+    public TextMeshProUGUI specialMakeText;
+
 
     //other objects
     public GameObject pluses;
@@ -42,10 +44,14 @@ public class ListingManager : MonoBehaviour
         critterName.text = stats.type;
         costText.text = "" + stats.cost;
         critterIcon.texture = stats.idleIcon;
-        if(!stats.makesNibs && !stats.makesCash){
+        if(stats.makesSpecial || (!stats.makesNibs && !stats.makesCash)){
             makeText.gameObject.SetActive(false);
             makeIcon.gameObject.SetActive(false);
             pluses.SetActive(false);
+            if(stats.makesSpecial){
+                makeText.text = stats.makesSpecialText;
+                makeText.gameObject.SetActive(true);
+            }
         }
         else{
             makeIcon.sprite = stats.makesNibs ? nib : cash;

@@ -18,10 +18,12 @@ MonoBehaviour:
   makesCash: 0
   makesMin: 1
   makesMax: 2
+  makesSpecial: 0
+  makesSpecialText: 
   eatsNibs: 0
   eatsCash: 0
   eats: 0
-  maxAge: 300
+  maxAge: 90
   minSell: 10
   maxSell: 15
   cost: 10

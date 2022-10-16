@@ -20,6 +20,10 @@ public class CritterStats : ScriptableObject
     public float makesMin;
     public float makesMax;
 
+    //Special make
+    public bool makesSpecial;
+    public string makesSpecialText;
+
     //Eat Stats
     public bool eatsNibs;
     public bool eatsCash;
@@ -41,4 +45,5 @@ public class CritterStats : ScriptableObject
     public Texture idleIcon;
     public Texture hungryIcon;
     public Texture deadIcon;
+
 }

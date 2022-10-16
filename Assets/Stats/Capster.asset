@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: Capster
   m_EditorClassIdentifier: 
   type: Capster
-  moveFrequency: 5
+  moveFrequency: 70
   makesNibs: 1
   makesCash: 0
-  makesMin: 1
-  makesMax: 4
+  makesMin: 2
+  makesMax: 5
+  makesSpecial: 0
+  makesSpecialText: 
   eatsNibs: 0
   eatsCash: 1
   eats: 1

@@ -381,6 +381,7 @@ public class RanchController : MonoBehaviour
         }
         Destroy(critterToSell.gameObject);
         UpdateDataManager();
+        UpdateCritterCounter();
     }
 
     public void Pause(){

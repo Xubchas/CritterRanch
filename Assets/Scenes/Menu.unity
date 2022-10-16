@@ -3588,7 +3588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 272d08aa05fee5349b992f0c5e8390c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameInput: {fileID: 588856136}
+  nameInput: {fileID: 842924885}
   nameScreen: {fileID: 380551218}
   audioSlider: {fileID: 987775365}
   continueButton: {fileID: 737601035}

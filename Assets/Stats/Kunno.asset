@@ -25,5 +25,7 @@ MonoBehaviour:
   minSell: 35
   maxSell: 65
   cost: 55
-  prefab: {fileID: 0}
-  icon: {fileID: 0}
+  prefab: {fileID: 6144403736014874743, guid: 8cfb45043c188b54bb1f82741f28ebec, type: 3}
+  idleIcon: {fileID: 2800000, guid: d64b90826afc8204ea772101e701a935, type: 3}
+  hungryIcon: {fileID: 2800000, guid: e65aca788518b2c4c8f7c9f4dc6a047e, type: 3}
+  deadIcon: {fileID: 2800000, guid: 189d5857a886a8d4f85958d15d63cea7, type: 3}

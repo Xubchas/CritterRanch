@@ -44,6 +44,14 @@ public class CritterController : MonoBehaviour
     //my collider
     public Collider2D m_col;
 
+    //my animator
+    public Animator anim;
+
+    //hunger stats
+    public bool isHungry;
+    public bool isDead;
+    public const float HUNGER_THRESHOLD = 0.7f;
+
     void Awake(){
         //initialize directions
         directions.Add(UP);
@@ -59,12 +67,17 @@ public class CritterController : MonoBehaviour
         if(willMove()){
             AttemptMove();
         }
+        Eat();
         Make();
+        CheckHunger();
         Age();
     }
 
     //returns whether the critter will move this tick
     public bool willMove(){
+        if(isDead || isHungry){
+            return false;
+        }
         //check whether cooling down
         if(tickCooldown > 0){
             //countdown cooldown
@@ -101,6 +114,9 @@ public class CritterController : MonoBehaviour
 
     //adds nibs and cash accorfing to critter stats
     void Make(){
+        if(isHungry || isDead){
+            return;
+        }
         if(m_stats.makesNibs){
             m_controller.nibs += (m_stats.makesMin + ((m_stats.makesMax - m_stats.makesMin) * me.age/m_stats.maxAge))*TICK_LENGTH;
             m_controller.nibsPerSecond += (m_stats.makesMin + ((m_stats.makesMax - m_stats.makesMin) * me.age/m_stats.maxAge));
@@ -111,11 +127,42 @@ public class CritterController : MonoBehaviour
         }
     }
 
+    void Eat(){
+        if(isDead){
+            return;
+        }
+        if(m_stats.eatsNibs){
+            if(m_controller.nibs < m_stats.eats){
+                me.hunger--;
+            }
+            m_controller.nibs -= m_stats.eats * TICK_LENGTH;
+            m_controller.nibsPerSecond -= m_stats.eats;
+        }
+        else if (m_stats.eatsCash){
+            if(m_controller.cash < m_stats.eats){
+                me.hunger--;
+            }
+            m_controller.cash -= m_stats.eats * TICK_LENGTH;
+            m_controller.cashPerSecond -= m_stats.eats;
+        }
+    }
+
     //Increments Age of critter
     void Age(){
+        if(isDead){
+            return;
+        }
         if(me.age < m_stats.maxAge){
             me.age += RanchController.TICK_LENGTH;
         }
+    }
+
+    //Checks whether critter is hungry
+    void CheckHunger(){
+        isHungry = me.hunger < HUNGER_THRESHOLD * DataManager.MAX_HUNGER;
+        isDead = me.hunger <= 0;
+        anim.SetBool("isHungry", isHungry);
+        anim.SetBool("isDead", isDead);
     }
 
     //Allows ranch controller to set a position

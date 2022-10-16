@@ -130,6 +130,9 @@ MonoBehaviour:
     hunger: 0
     age: 0
   m_col: {fileID: 7265948763927068859}
+  anim: {fileID: 7229001158696659186}
+  isHungry: 0
+  isDead: 0
 --- !u!61 &7265948763927068859
 BoxCollider2D:
   m_ObjectHideFlags: 0

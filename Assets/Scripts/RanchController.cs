@@ -317,7 +317,7 @@ public class RanchController : MonoBehaviour
         namePopup.SetActive(true);
         nameInput.text = "";
         emptyInput = nameInput.text;
-        namePopupIcon.texture = critterToPurchase.icon;
+        namePopupIcon.texture = critterToPurchase.idleIcon;
         
     }
 
@@ -372,7 +372,12 @@ public class RanchController : MonoBehaviour
         critterObjects.Remove(critterToSell.gameObject);
         Critter critter = critterToSell.me;
         CritterStats stats = DataManager.instance.getStat(critter.type);
-        cash += stats.minSell + ((stats.maxSell-stats.minSell) * critter.age/stats.maxAge);
+        if(critterToSell.isDead){
+            cash += DataManager.DEAD_SELL;
+        }
+        else{
+            cash += stats.minSell + ((stats.maxSell-stats.minSell) * critter.age/stats.maxAge);
+        }
         Destroy(critterToSell.gameObject);
         UpdateDataManager();
     }

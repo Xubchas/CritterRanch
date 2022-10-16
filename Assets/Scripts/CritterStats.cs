@@ -38,5 +38,7 @@ public class CritterStats : ScriptableObject
     public GameObject prefab;
 
     //Criter Shop Icon
-    public Texture icon;
+    public Texture idleIcon;
+    public Texture hungryIcon;
+    public Texture deadIcon;
 }

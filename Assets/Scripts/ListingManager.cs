@@ -41,7 +41,7 @@ public class ListingManager : MonoBehaviour
     public void UpdateListing(){
         critterName.text = stats.type;
         costText.text = "" + stats.cost;
-        critterIcon.texture = stats.icon;
+        critterIcon.texture = stats.idleIcon;
         if(!stats.makesNibs && !stats.makesCash){
             makeText.gameObject.SetActive(false);
             makeIcon.gameObject.SetActive(false);

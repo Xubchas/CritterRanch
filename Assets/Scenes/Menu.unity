@@ -443,6 +443,7 @@ MonoBehaviour:
   playerName: 
   critterMasterList:
   - {fileID: 11400000, guid: 929de6af66cb9aa40b800784dd74dc9d, type: 2}
+  - {fileID: 11400000, guid: e4546cadb2fed1a4b863772a005cba8a, type: 2}
   volume: 0
 --- !u!1 &220952683
 GameObject:

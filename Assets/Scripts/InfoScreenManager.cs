@@ -18,6 +18,7 @@ public class InfoScreenManager : MonoBehaviour
     public TextMeshProUGUI makeText;
     public TextMeshProUGUI eatText;
     public TextMeshProUGUI priceText;
+    public TextMeshProUGUI statusText;
 
     //images to set
     public RawImage icon;
@@ -43,7 +44,6 @@ public class InfoScreenManager : MonoBehaviour
         critterObject = critterCon;
         Critter critter = critterCon.me;
         CritterStats stats = DataManager.instance.getStat(critter.type);
-        icon.texture = stats.icon;
         nameText.text = "Name: " + critter.name;
         typeText.text = "Type: " + critter.type;
         string agevalue = "";
@@ -62,20 +62,25 @@ public class InfoScreenManager : MonoBehaviour
         ageText.text = "Age: " + agevalue;
 
         //make bits
-        bool makesAnything = stats.makesNibs || stats.makesCash;
+        bool makesAnything = (stats.makesNibs || stats.makesCash) && !critterCon.isDead;
 
         makeText.gameObject.SetActive(makesAnything);
         makeIcon.gameObject.SetActive(makesAnything);
         plusSigns.SetActive(makesAnything);
 
         makeIcon.sprite = stats.makesNibs ? nib : cash;
-        float makeValue = stats.makesMin + ((stats.makesMax-stats.makesMin) * critter.age/stats.maxAge);
+        float makeValue;
+        if(critterCon.isHungry){
+            makeValue = 0;
+        }else{
+            makeValue = stats.makesMin + ((stats.makesMax-stats.makesMin) * critter.age/stats.maxAge);
+        }
         string makeString = makeValue.ToString("F2");
         makeString = makeString.Replace(',','.');
         makeText.text = makeString + " /s";
 
         //eat bits
-        bool eatsAnything = stats.eatsNibs || stats.eatsCash;
+        bool eatsAnything = (stats.eatsNibs || stats.eatsCash) && !critterCon.isDead;
 
         eatText.gameObject.SetActive(eatsAnything);
         eatIcon.gameObject.SetActive(eatsAnything);
@@ -85,13 +90,32 @@ public class InfoScreenManager : MonoBehaviour
         eatText.text = stats.eats + " /s";
 
         //price
-        priceText.text = "" + Mathf.Floor((stats.minSell + ((stats.maxSell-stats.minSell) * critter.age/stats.maxAge)));
+        if(critterCon.isDead){
+            priceText.text = "" + DataManager.DEAD_SELL;
+        }
+        else{
+            priceText.text = "" + Mathf.Floor((stats.minSell + ((stats.maxSell-stats.minSell) * critter.age/stats.maxAge)));
+        }
 
         //button stuff
         confirmButton.SetActive(false);
         sureSign.SetActive(false);
         cancelButton.SetActive(false);
         sellButton.SetActive(false);
+
+        //status stuff
+        if (critterCon.isDead){
+            statusText.text = "DEAD";
+            icon.texture = stats.deadIcon;
+        }
+        else if(critterCon.isHungry){
+            statusText.text = "Hungry";
+            icon.texture = stats.hungryIcon;
+        }
+        else{
+            statusText.text = "OK";
+            icon.texture = stats.idleIcon;
+        }
 
     }
 

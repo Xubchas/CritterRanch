@@ -28,7 +28,10 @@ public class ShopManager : MonoBehaviour
     private const float NIBS_TO_CASH = 10;
 
     //number of nibs bought for 1 cash
-    private const float CASH_TO_NIBS = 5;
+    private const float BUY_50 = 20;
+    private const float BUY_500 = 190;
+    private const float SELL_50 = 10;
+    private const float SELL_500 = 125;
 
     //number of listings per page
     private const int LISTINGS_MAX = 3;
@@ -115,12 +118,15 @@ public class ShopManager : MonoBehaviour
 
     //Adds nibs, deducts cash according to constant exchange rate
     public void PurchaseNibs(int nibsToPurchase){
-        if (m_controller.cash < (float) nibsToPurchase / CASH_TO_NIBS){
+        float nibsCost = nibsToPurchase == 50 ? BUY_50 : BUY_500;
+
+
+        if (m_controller.cash < nibsCost){
             //do nothing if not enough cash
             return;
         }
 
-        m_controller.cash -= (float) nibsToPurchase / CASH_TO_NIBS;
+        m_controller.cash -= nibsCost;
         m_controller.nibs += nibsToPurchase;
         m_controller.UpdateUI();
 
@@ -128,12 +134,14 @@ public class ShopManager : MonoBehaviour
 
     //Adds cash, deducts nibs according to constant exchange rate
     public void SellNibs(int nibsToSell){
+        float nibsCost = nibsToSell == 50 ? SELL_50 : SELL_500;
+
         if (m_controller.nibs < nibsToSell){
             //do nothing if not enough nibs
             return;
         }
 
-        m_controller.cash += (float) nibsToSell / NIBS_TO_CASH;
+        m_controller.cash += nibsCost;
         m_controller.nibs -= nibsToSell;
         m_controller.UpdateUI();
     }

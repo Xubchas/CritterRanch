@@ -26,7 +26,7 @@ MonoBehaviour:
   maxAge: 300
   minSell: 60
   maxSell: 125
-  cost: 75
+  cost: 85
   prefab: {fileID: 6807483373455198985, guid: 6255f82d5dc80d649b41c7c2379029e0, type: 3}
   idleIcon: {fileID: 2800000, guid: fca9be180d379184a8486f9fa5d49cc2, type: 3}
   hungryIcon: {fileID: 2800000, guid: 923f984d13f21954c91377379e65ae85, type: 3}

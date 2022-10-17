@@ -22,11 +22,11 @@ MonoBehaviour:
   makesSpecialText: Sells high
   eatsNibs: 1
   eatsCash: 0
-  eats: 4
+  eats: 5
   maxAge: 360
   minSell: 10
   maxSell: 3600
-  cost: 50
+  cost: 100
   prefab: {fileID: 2877497156987432285, guid: 3c8eacbbddf9e9e4aabe4eec483d4acf, type: 3}
   idleIcon: {fileID: 2800000, guid: 205b5c7a3c5157343997d1eeb32b8251, type: 3}
   hungryIcon: {fileID: 2800000, guid: 4a528dac35cac2048bb46e3f130001b3, type: 3}

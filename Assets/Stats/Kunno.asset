@@ -17,7 +17,7 @@ MonoBehaviour:
   makesNibs: 0
   makesCash: 1
   makesMin: 1
-  makesMax: 2
+  makesMax: 3
   makesSpecial: 0
   makesSpecialText: 
   eatsNibs: 1

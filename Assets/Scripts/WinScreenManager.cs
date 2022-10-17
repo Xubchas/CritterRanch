@@ -3,13 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+
+//CLASS DESCRIPTION
+//Populates the necessary data in the win screen
 public class WinScreenManager : MonoBehaviour
 {
     public TextMeshProUGUI timeText;
     private float time;
+
+
     // Start is called before the first frame update
     void Start()
     {
+        //Place game time on screen;
         time = DataManager.instance.time;
         float hours = Mathf.Floor(time/3600f);
         float minutes = Mathf.Floor(time/60f) % 60;

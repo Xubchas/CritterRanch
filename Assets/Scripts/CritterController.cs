@@ -84,6 +84,7 @@ public class CritterController : MonoBehaviour
             tickCooldown--;
             return false;
         }
+        //move frequency is stated as a percentage
         return Random.Range(0,100) < m_stats.moveFrequency;
     }
 
@@ -115,6 +116,7 @@ public class CritterController : MonoBehaviour
     //adds nibs and cash accorfing to critter stats
     protected virtual void Make(){
         if(isHungry || isDead){
+            //make nothign if hungry or dead
             return;
         }
         if(m_stats.makesNibs){
@@ -127,15 +129,19 @@ public class CritterController : MonoBehaviour
         }
     }
 
+    //consumes nibs and cash according to critter stats
     void Eat(){
         if(isDead){
+            //eat nothing only if dead
             return;
         }
         if(m_stats.eatsNibs){
             if(m_controller.nibs < m_stats.eats){
+                //reduce hunger if not enought to eat
                 me.hunger--;
             }
             else if (me.hunger < DataManager.MAX_HUNGER){
+                //increase hunger if managed to eat and had hunget below max
                 me.hunger++;
             }
             m_controller.nibs -= m_stats.eats * TICK_LENGTH;
@@ -189,10 +195,12 @@ public class CritterController : MonoBehaviour
         me = critter;
     }
 
+    //click to open info screen for this critter
     void OnMouseDown(){
         m_controller.OpenInfoPanel(this);
     }
 
+    //makes sure that the critter cannot be clicked through a popup (while game paused)
     void Update(){
         if(m_controller.paused){
             m_col.enabled = false;

@@ -19,7 +19,8 @@ public class DataManager : MonoBehaviour
     }
 
 
-    //ENCAPSULATION: Data manager's fields are all encapsulated
+    //ENCAPSULATION
+    //Data manager's fields are all encapsulated
     private float _nibs;
     public float nibs{
         get{
@@ -125,10 +126,12 @@ public class DataManager : MonoBehaviour
         return null;
     }
 
+    //checks whether there is data
     public bool hasSaveGame(){
         return save != null;
     }
 
+    //creates a new save game object and stores it in this class
     public void SaveSaveGame(){
         save = new SaveGame(playerName, nibs, cash, maxSlots, time, critters);
     }
@@ -144,6 +147,7 @@ public class DataManager : MonoBehaviour
         public float time;
         public List<Critter> critters;
 
+        //constructor
         public SaveGame(string playerName, float nibs, float cash, int maxSlots, float time, List<Critter> critters){
             this.playerName = playerName;
             this.nibs = nibs;

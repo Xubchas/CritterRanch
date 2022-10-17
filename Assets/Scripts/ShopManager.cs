@@ -146,7 +146,7 @@ public class ShopManager : MonoBehaviour
         m_controller.UpdateUI();
     }
 
-
+    //Called when critter purchased from listing
     public void PurchaseCritter(CritterStats stats){
         if(m_controller.cash < stats.cost || m_controller.slots == m_controller.critterObjects.Count){
             return;
@@ -155,19 +155,21 @@ public class ShopManager : MonoBehaviour
         m_controller.NameCritter(stats);
     }
 
+    //Purchases and adds a new slot
     public void PurchaseSlot(){
-        if(m_controller.slots == MAX_SLOTS || m_controller.cash < slotPrices[m_controller.slots - DataManager.START_SLOTS] ){
+        if(m_controller.slots >= MAX_SLOTS || m_controller.cash < slotPrices[m_controller.slots - DataManager.START_SLOTS] ){
             return;
         }
         m_controller.cash -= slotPrices[m_controller.slots - DataManager.START_SLOTS];
         m_controller.slots ++;
         
-        slotPriceText.text = m_controller.slots < 10 ? "" + slotPrices[m_controller.slots - DataManager.START_SLOTS] : "N/A";
+        slotPriceText.text = m_controller.slots < MAX_SLOTS ? "" + slotPrices[m_controller.slots - DataManager.START_SLOTS] : "N/A";
         
         m_controller.UpdateUI();
         m_controller.UpdateCritterCounter();
     }
 
+    //Called only from special buy button
     public void Victory(){
         m_controller.Victory();
     }

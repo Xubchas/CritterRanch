@@ -370,12 +370,14 @@ public class RanchController : MonoBehaviour
         StartCoroutine(Ticker());
     }
 
+    //Opens info panel for critter in attribute
     public void OpenInfoPanel(CritterController critterToList){
         Pause();
         infoPopup.SetActive(true);
         infoPopup.GetComponent<InfoScreenManager>().UpdateInfoPage(critterToList);
     }
 
+    //Sells the critter a crittercontroller is attached to
     public void SellCritter(CritterController critterToSell){
         infoPopup.SetActive(false);
         UnPause();
@@ -383,9 +385,11 @@ public class RanchController : MonoBehaviour
         Critter critter = critterToSell.me;
         CritterStats stats = DataManager.instance.getStat(critter.type);
         if(critterToSell.isDead){
+            //sells for dead price if dead
             cash += DataManager.DEAD_SELL;
         }
         else{
+            //sells for normal price
             cash += stats.minSell + ((stats.maxSell-stats.minSell) * critter.age/stats.maxAge);
         }
         Destroy(critterToSell.gameObject);
@@ -393,17 +397,20 @@ public class RanchController : MonoBehaviour
         UpdateCritterCounter();
     }
 
+    //Pauses the game
     public void Pause(){
         UpdateDataManager();
         paused = true;
         Time.timeScale = 0f;
     }
 
+    //Unpauses the game
     public void UnPause(){
         paused = false;
         Time.timeScale = 1f;
     }
 
+    //Opens the Pause screen
     public void OpenPauseScreen(){
         Pause();
         pauseScreen.SetActive(true);
@@ -413,30 +420,37 @@ public class RanchController : MonoBehaviour
         timeSign.transform.position = timeSignShopPos;
     }
 
+    //Closes the pause screen
     public void ClosePauseScreen(){
         pauseScreen.SetActive(false);
         pauseButton.SetActive(true);
         playButton.SetActive(false);
         optionsScreen.SetActive(false);
         if(!shop.activeInHierarchy){
+            //only moves time signs ifnot in shop
             critterSign.transform.position = critterSignFarmPos;
             timeSign.transform.position = timeSignFarmPos;
         }
         UnPause();
     }
 
+    //Reloads the main menu scene
     public void BackToMenu(){
         UpdateDataManager();
         SceneManager.LoadScene(0);
     }
 
+    //Ages a random 
     public void ageRandom(int ticksToAge){
         int randIndex = Random.Range(0,critterObjects.Count);
         critterObjects[randIndex].GetComponent<CritterController>().Age(ticksToAge);
     }
 
+    //Takes you to victory screen if can buy final critter
     public void Victory(){
-        SceneManager.LoadScene(2);
+        if(nibs == 99999){
+            SceneManager.LoadScene(2);
+        }
     }
 
 }

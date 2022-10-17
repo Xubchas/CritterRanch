@@ -76,6 +76,7 @@ public class ListingManager : MonoBehaviour
             eatText.text = stats.eats + " /s";
         }
 
+        //turns on special button for win critter
         if(stats.type == "??????"){
             buyButton.SetActive(false);
             specialBuyButton.SetActive(true);
@@ -83,10 +84,12 @@ public class ListingManager : MonoBehaviour
 
     }
 
+    //Called when listed critter is bought
     public void Purchase(){
         m_manager.PurchaseCritter(stats);
     }
 
+    //Called ONLY when special critter is bought
     public void Victory(){
         m_manager.Victory();
     }

@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-
+//CLASS DESCRIPTION
+//this class manages the critter info screen, setting the appropriate values and turning on the correct fields
 public class InfoScreenManager : MonoBehaviour
 {
     //utility sprites
@@ -38,8 +39,11 @@ public class InfoScreenManager : MonoBehaviour
     private RanchController m_controller;
 
     void Awake(){
+        //find controller
         m_controller = GameObject.FindGameObjectWithTag("GameController").GetComponent<RanchController>();
     }
+
+    //Main class method, sets the screen to reflect the critter info
     public void UpdateInfoPage(CritterController critterCon){
         critterObject = critterCon;
         Critter critter = critterCon.me;
@@ -127,6 +131,8 @@ public class InfoScreenManager : MonoBehaviour
 
     }
 
+    //Resets the screen to its default state
+    //also calls the sell method
     public void SellCurrent(){
         confirmButton.SetActive(false);
         sureSign.SetActive(false);
@@ -135,6 +141,7 @@ public class InfoScreenManager : MonoBehaviour
         m_controller.SellCritter(critterObject);
     }
 
+    //makes sure you don't click a button by accident
     void Update(){
         if(Input.GetMouseButtonUp(0)){
             cancelButton.SetActive(true);

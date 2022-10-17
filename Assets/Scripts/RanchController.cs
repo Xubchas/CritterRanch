@@ -448,7 +448,8 @@ public class RanchController : MonoBehaviour
 
     //Takes you to victory screen if can buy final critter
     public void Victory(){
-        if(nibs == 99999){
+        if(cash > 99998f){
+
             SceneManager.LoadScene(2);
         }
     }

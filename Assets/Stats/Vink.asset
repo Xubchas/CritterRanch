@@ -20,14 +20,14 @@ MonoBehaviour:
   makesMax: 0
   makesSpecial: 0
   specialHasUnits: 1
-  makesSpecialText: X2
+  makesSpecialText: Doubled
   eatsNibs: 1
   eatsCash: 0
   eats: 10
   maxAge: 120
   minSell: 200
   maxSell: 300
-  cost: 250
+  cost: 500
   prefab: {fileID: 114257807216147785, guid: ffaefdb904862204cb2ba8ee2fcba322, type: 3}
   idleIcon: {fileID: 2800000, guid: fc4627ebd73cb734da75aad7c57dd3db, type: 3}
   hungryIcon: {fileID: 2800000, guid: f813e44d9b185494fb8109d7378a244f, type: 3}

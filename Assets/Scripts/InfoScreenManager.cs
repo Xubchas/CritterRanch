@@ -75,9 +75,17 @@ public class InfoScreenManager : MonoBehaviour
         }else{
             makeValue = stats.makesMin + ((stats.makesMax-stats.makesMin) * critter.age/stats.maxAge);
         }
-        string makeString = makeValue.ToString("F2");
-        makeString = makeString.Replace(',','.');
-        makeText.text = makeString + " /s";
+
+        string makeString;
+        if(!stats.specialHasUnits){
+            makeString = makeValue.ToString("F2");
+            makeString = makeString.Replace(',','.');
+            makeString = makeString + " /s";
+        }
+        else{
+            makeString = stats.makesSpecialText;
+        }
+        makeText.text = makeString;
 
         //eat bits
         bool eatsAnything = (stats.eatsNibs || stats.eatsCash) && !critterCon.isDead;

@@ -38,12 +38,12 @@ public class ShopManager : MonoBehaviour
     private const int LISTING_YSIZE = 128;
 
     //maximum allowed slots
-    public const int MAX_SLOTS = 10;
+    public const int MAX_SLOTS = 15;
 
     //slot price listing
     public TextMeshProUGUI slotPriceText;
     //slot price progression
-    public readonly int[] slotPrices = new int[] {50, 100, 250, 500, 1000, 5000, 10000};
+    public readonly int[] slotPrices = new int[] {25, 50, 100, 250, 500, 1000, 2500, 5000, 10000, 50000};
 
     
 

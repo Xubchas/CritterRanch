@@ -435,4 +435,8 @@ public class RanchController : MonoBehaviour
         critterObjects[randIndex].GetComponent<CritterController>().Age(ticksToAge);
     }
 
+    public void Victory(){
+        SceneManager.LoadScene(2);
+    }
+
 }

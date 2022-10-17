@@ -168,5 +168,9 @@ public class ShopManager : MonoBehaviour
         m_controller.UpdateCritterCounter();
     }
 
+    public void Victory(){
+        m_controller.Victory();
+    }
+
 
 }

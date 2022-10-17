@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5b5a7f734b28f44c8ea1cfbbb2285f0, type: 3}
   m_Name: Fairy
   m_EditorClassIdentifier: 
-  type: Fairy
+  type: ??????
   moveFrequency: 100
   makesNibs: 0
   makesCash: 0
@@ -29,6 +29,6 @@ MonoBehaviour:
   maxSell: 0
   cost: 99999
   prefab: {fileID: 0}
-  idleIcon: {fileID: 0}
-  hungryIcon: {fileID: 0}
-  deadIcon: {fileID: 0}
+  idleIcon: {fileID: 2800000, guid: 51596d61eb4edfe4f84b5de01d149ddc, type: 3}
+  hungryIcon: {fileID: 2800000, guid: 51596d61eb4edfe4f84b5de01d149ddc, type: 3}
+  deadIcon: {fileID: 2800000, guid: 51596d61eb4edfe4f84b5de01d149ddc, type: 3}

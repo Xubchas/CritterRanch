@@ -30,6 +30,9 @@ public class ListingManager : MonoBehaviour
     public GameObject pluses;
     public GameObject minuses;
 
+    public GameObject buyButton;
+    public GameObject specialBuyButton;
+
 
     //stats for this listing
     public CritterStats stats;
@@ -73,9 +76,18 @@ public class ListingManager : MonoBehaviour
             eatText.text = stats.eats + " /s";
         }
 
+        if(stats.type == "??????"){
+            buyButton.SetActive(false);
+            specialBuyButton.SetActive(true);
+        }
+
     }
 
     public void Purchase(){
         m_manager.PurchaseCritter(stats);
+    }
+
+    public void Victory(){
+        m_manager.Victory();
     }
 }

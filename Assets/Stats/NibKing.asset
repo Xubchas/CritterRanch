@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: NibKing
   m_EditorClassIdentifier: 
   type: NibKing
-  moveFrequency: 0
+  moveFrequency: 10
   makesNibs: 1
   makesCash: 0
   makesMin: 1
@@ -25,8 +25,8 @@ MonoBehaviour:
   eatsCash: 0
   eats: 0
   maxAge: 120
-  minSell: 0
-  maxSell: 0
+  minSell: 10
+  maxSell: 10
   cost: 1000
   prefab: {fileID: 8052144208359756268, guid: 804b189d37611594a9a0fa064cd29468, type: 3}
   idleIcon: {fileID: 2800000, guid: 73b3ff874528bce4ca5b2d3cbeb60d61, type: 3}

@@ -135,12 +135,18 @@ public class CritterController : MonoBehaviour
             if(m_controller.nibs < m_stats.eats){
                 me.hunger--;
             }
+            else if (me.hunger < DataManager.MAX_HUNGER){
+                me.hunger++;
+            }
             m_controller.nibs -= m_stats.eats * TICK_LENGTH;
             m_controller.nibsPerSecond -= m_stats.eats;
         }
         else if (m_stats.eatsCash){
             if(m_controller.cash < m_stats.eats){
                 me.hunger--;
+            }
+            else if (me.hunger < DataManager.MAX_HUNGER){
+                me.hunger++;
             }
             m_controller.cash -= m_stats.eats * TICK_LENGTH;
             m_controller.cashPerSecond -= m_stats.eats;

@@ -63,6 +63,8 @@ public class RanchController : MonoBehaviour
 
     public float nibsPerSecond;
     public float cashPerSecond;
+    public float cashThisTick;
+    public int timesCashDoubled;
 
     public int slots;
     public float time;
@@ -181,9 +183,16 @@ public class RanchController : MonoBehaviour
     void TickRanch(){
         nibsPerSecond = 0;
         cashPerSecond = 0;
+        cashThisTick = 0;
+        timesCashDoubled = 0;
         foreach(GameObject critter in critterObjects){
             critter.GetComponent<CritterController>().TickCritter();
         }
+       
+        cashThisTick = cashThisTick * (Mathf.Pow(2, timesCashDoubled));
+
+        cashPerSecond += (cashPerSecond * (Mathf.Pow(2,timesCashDoubled)-1));
+        cash += cashThisTick;
     }
 
     //Receives the current position of the critter and a direction of motion

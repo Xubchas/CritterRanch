@@ -22,6 +22,7 @@ public class CritterStats : ScriptableObject
 
     //Special make
     public bool makesSpecial;
+    public bool specialHasUnits;
     public string makesSpecialText;
 
     //Eat Stats

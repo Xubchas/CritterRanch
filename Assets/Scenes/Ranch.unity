@@ -6642,6 +6642,8 @@ MonoBehaviour:
   critterObjects: []
   nibsPerSecond: 0
   cashPerSecond: 0
+  cashThisTick: 0
+  timesCashDoubled: 0
   slots: 0
   time: 0
   shop: {fileID: 1390538624}

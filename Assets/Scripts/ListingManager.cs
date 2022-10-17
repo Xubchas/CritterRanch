@@ -55,7 +55,12 @@ public class ListingManager : MonoBehaviour
         }
         else{
             makeIcon.sprite = stats.makesNibs ? nib : cash;
-            makeText.text = stats.makesMin + "-" + stats.makesMax + " /s";
+            if(stats.specialHasUnits){
+                makeText.text = stats.makesSpecialText;
+            }
+            else{
+                makeText.text = stats.makesMin + "-" + stats.makesMax + " /s";
+            }
         }
 
         if(!stats.eatsNibs && !stats.eatsCash){

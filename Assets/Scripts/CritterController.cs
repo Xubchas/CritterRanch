@@ -113,7 +113,7 @@ public class CritterController : MonoBehaviour
     }
 
     //adds nibs and cash accorfing to critter stats
-    void Make(){
+    protected virtual void Make(){
         if(isHungry || isDead){
             return;
         }
@@ -122,7 +122,7 @@ public class CritterController : MonoBehaviour
             m_controller.nibsPerSecond += (m_stats.makesMin + ((m_stats.makesMax - m_stats.makesMin) * me.age/m_stats.maxAge));
         }
         else if (m_stats.makesCash){
-            m_controller.cash += (m_stats.makesMin + ((m_stats.makesMax - m_stats.makesMin) * me.age/m_stats.maxAge))*TICK_LENGTH;
+            m_controller.cashThisTick += (m_stats.makesMin + ((m_stats.makesMax - m_stats.makesMin) * me.age/m_stats.maxAge))*TICK_LENGTH;
             m_controller.cashPerSecond += (m_stats.makesMin + ((m_stats.makesMax - m_stats.makesMin) * me.age/m_stats.maxAge));
         }
     }

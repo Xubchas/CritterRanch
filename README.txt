@@ -55,6 +55,13 @@ Jump_00 - LitteRobotSoundFactory
 Collect_Point_01 - LitteRobotSoundFactory 
 Hit_01 - LitteRobotSoundFactory 
 
+Playtesting
+---
+June
+JC
+Sebas
+
+
 ---
 Sounds by LitteRobotSoundFactory licensed under Creative Commons 4.0
 https://creativecommons.org/licenses/by/4.0/

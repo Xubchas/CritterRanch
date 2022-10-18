@@ -277,6 +277,9 @@ public class RanchController : MonoBehaviour
         UpdateDataManager();
     }
 
+    //ABSTRACTION
+    //Like many methods in this script GetValidPos abstracts the function of the method to this call
+
     //Checks for empty space in array, returns a random valid position
     int[] GetValidPos(){
         bool foundspot = false;

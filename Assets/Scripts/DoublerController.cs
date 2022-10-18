@@ -10,7 +10,7 @@ using UnityEngine;
 public class DoublerController : CritterController
 {
     //POLYMORPHISM
-    //Make is hereby overridden to cause doubling;
+    //Make is overridden to remove normal Make function with cash doubling
     protected override void Make()
     {
         if(isHungry || isDead){
@@ -20,3 +20,4 @@ public class DoublerController : CritterController
         m_controller.timesCashDoubled ++;
     }
 }
+

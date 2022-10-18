@@ -34,8 +34,10 @@ public class InfoScreenManager : MonoBehaviour
     public GameObject cancelButton;
     public GameObject sellButton;
 
+    //Critter displayed
     public CritterController critterObject;
 
+    //Scene controller
     private RanchController m_controller;
 
     void Awake(){
@@ -65,7 +67,7 @@ public class InfoScreenManager : MonoBehaviour
         }
         ageText.text = "Age: " + agevalue;
 
-        //make bits
+        //make bits stats
         bool makesAnything = (stats.makesNibs || stats.makesCash) && !critterCon.isDead;
 
         makeText.gameObject.SetActive(makesAnything);
@@ -91,7 +93,7 @@ public class InfoScreenManager : MonoBehaviour
         }
         makeText.text = makeString;
 
-        //eat bits
+        //eat bits stats
         bool eatsAnything = (stats.eatsNibs || stats.eatsCash) && !critterCon.isDead;
 
         eatText.gameObject.SetActive(eatsAnything);
@@ -109,7 +111,7 @@ public class InfoScreenManager : MonoBehaviour
             priceText.text = "" + Mathf.Floor((stats.minSell + ((stats.maxSell-stats.minSell) * critter.age/stats.maxAge)));
         }
 
-        //button stuff
+        //button deactivate
         confirmButton.SetActive(false);
         sureSign.SetActive(false);
         cancelButton.SetActive(false);

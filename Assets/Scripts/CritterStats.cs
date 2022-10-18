@@ -8,7 +8,8 @@ using UnityEngine;
 public class CritterStats : ScriptableObject
 {
 
-    //Name
+    //CRITICALLY IMPORTANT
+    //Critter type name
     public string type;
 
     //how often this critter moves (value from 0 to 100)
@@ -20,7 +21,7 @@ public class CritterStats : ScriptableObject
     public float makesMin;
     public float makesMax;
 
-    //Special make
+    //Special make info
     public bool makesSpecial;
     public bool specialHasUnits;
     public string makesSpecialText;

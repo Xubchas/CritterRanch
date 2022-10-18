@@ -153,6 +153,7 @@ public class CritterController : MonoBehaviour
             m_controller.nibsPerSecond -= m_stats.eats;
         }
         else if (m_stats.eatsCash){
+            //same as above, but with cash
             if(m_controller.cash < m_stats.eats){
                 me.hunger--;
             }
@@ -167,6 +168,7 @@ public class CritterController : MonoBehaviour
     //Increments Age of critter
     public void Age(int times = 1){
         if(isDead){
+            //dead critters do not age
             return;
         }
         for(int i = 0; i < times; i++){
@@ -179,7 +181,7 @@ public class CritterController : MonoBehaviour
         }
     }
 
-    //Checks whether critter is hungry
+    //Checks whether critter is hungry and assigns the appropriate value
     void CheckHunger(){
         isHungry = me.hunger < HUNGER_THRESHOLD * DataManager.MAX_HUNGER;
         isDead = me.hunger <= 0;
@@ -206,7 +208,7 @@ public class CritterController : MonoBehaviour
         m_controller.OpenInfoPanel(this);
     }
 
-    //makes sure that the critter cannot be clicked through a popup (while game paused)
+    //makes sure that the critter cannot be clicked through a popup (i.e. while game paused)
     void Update(){
         if(m_controller.paused){
             m_col.enabled = false;

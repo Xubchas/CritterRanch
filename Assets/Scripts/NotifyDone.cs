@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//CLASS DESCRIPTION
+//Used primarily to send notifications to a gamecontroller in the scene once an animation is done;
 public class NotifyDone : StateMachineBehaviour
 {
     public IntroController controller;
@@ -12,24 +14,4 @@ public class NotifyDone : StateMachineBehaviour
         controller = GameObject.FindGameObjectWithTag("GameController").GetComponent<IntroController>();
         controller.NotifyEvent(animator.gameObject, eventName);
     }
-
-
-
-    // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
-
-    // OnStateMove is called right after Animator.OnAnimatorMove()
-    //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    // Implement code that processes and affects root motion
-    //}
-
-    // OnStateIK is called right after Animator.OnAnimatorIK()
-    //override public void OnStateIK(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    // Implement code that sets up animation IK (inverse kinematics)
-    //}
 }

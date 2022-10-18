@@ -20,7 +20,7 @@ public class DataManager : MonoBehaviour
 
 
     //ENCAPSULATION
-    //Data manager's fields are all encapsulated
+    //Key game metrics fields are all encapsulated
     private float _nibs;
     public float nibs{
         get{
@@ -84,17 +84,23 @@ public class DataManager : MonoBehaviour
     public const float START_CASH = 50;
     public const float START_NIBS = 0;
     public const int START_SLOTS = 5;
-    public const int MAX_HUNGER = 150;
 
+    //how many ticks a critter can go without food
+    public const int MAX_HUNGER = 150;
+    //how much a dead critter sells for
     public const int DEAD_SELL = 10;
-    //volume tracking
+
+    public const float MAX_VOLUME = 15f;
+    public const float START_VOLUME = 6f;
+
+    //volume tracking across scenes
     public float volume;
 
     // Start is called before the first frame update
     void Awake()
     {
         save = null;
-        volume = 6f/15f;
+        volume = START_VOLUME/MAX_VOLUME;
         //singleton check
         if(instance != null && instance != this){
             Destroy(this.gameObject);

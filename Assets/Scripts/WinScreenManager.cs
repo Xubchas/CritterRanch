@@ -8,13 +8,23 @@ using TMPro;
 //Populates the necessary data in the win screen
 public class WinScreenManager : MonoBehaviour
 {
+    //UI Text fields
     public TextMeshProUGUI timeText;
     public TextMeshProUGUI nameText;
+
+    //game stats to display
     private float time;
+
+    //display management
     private int textIndex = 0;
     public List<GameObject> texts;
     public List<GameObject> pages;
+    private const int TEXT_PER_PAGE = 3;
+    private const float START_WAIT = 1f;
+    private const float NORMAL_WAIT = 2f;
+    private const float LONG_WAIT = 4f;
 
+    //audio stuff
     public AudioSource audioSource;
 
 
@@ -34,14 +44,15 @@ public class WinScreenManager : MonoBehaviour
         
     }
 
+    //Runs through the text in the list
     IEnumerator animateText(){
-        float timeToWait = 1f;
+        float timeToWait = START_WAIT;
 
         while(true){
             yield return new WaitForSeconds(timeToWait);
-            timeToWait = 2f;
-            if(textIndex == 3){
-                pages[(textIndex/3)-1].SetActive(false);
+            timeToWait = NORMAL_WAIT;
+            if(textIndex == TEXT_PER_PAGE){
+                pages[(textIndex/TEXT_PER_PAGE)-1].SetActive(false);
             }
             if(textIndex == texts.Count){
                 break;
@@ -49,9 +60,9 @@ public class WinScreenManager : MonoBehaviour
 
             texts[textIndex].gameObject.SetActive(true);
             textIndex ++;
-            if((textIndex % 3 == 0))
+            if((textIndex % TEXT_PER_PAGE == 0))
             {
-                timeToWait = 4f;
+                timeToWait = LONG_WAIT;
             }
 
         }

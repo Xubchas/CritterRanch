@@ -20,6 +20,7 @@ public class IntroController : MonoBehaviour
 
     public AudioSource audioSource;
     public GameObject skipButton;
+    public GameObject skipText;
 
     // Start is called before the first frame update
     void Start()
@@ -87,6 +88,7 @@ public class IntroController : MonoBehaviour
         StartCoroutine(FadeOutMusic());
         backGround.GetComponent<Animator>().SetTrigger("isOutro");
         skipButton.SetActive(false);
+        skipText.SetActive(false);
     }
 
     public void SkipIntro(){

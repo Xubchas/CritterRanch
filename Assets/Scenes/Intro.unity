@@ -1396,6 +1396,7 @@ MonoBehaviour:
   - {fileID: 1264772628}
   - {fileID: 1207653410}
   audioSource: {fileID: 519420034}
+  skipButton: {fileID: 1544950039}
 --- !u!4 &1345229658
 Transform:
   m_ObjectHideFlags: 0

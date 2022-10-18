@@ -45,7 +45,12 @@ public class ShopManager : MonoBehaviour
     //slot price progression
     public readonly int[] slotPrices = new int[] {25, 50, 100, 250, 500, 1000, 2500, 5000, 10000, 50000};
 
-    
+    //Audio Sutff
+    public AudioSource audioSource;
+    public AudioClip nibGet;
+    public AudioClip cashGet;
+    public AudioClip slotGet;
+    public AudioClip denied;
 
     void Awake(){
         //Finds Controller
@@ -123,9 +128,10 @@ public class ShopManager : MonoBehaviour
 
         if (m_controller.cash < nibsCost){
             //do nothing if not enough cash
+            audioSource.PlayOneShot(denied);
             return;
         }
-
+        audioSource.PlayOneShot(nibGet);
         m_controller.cash -= nibsCost;
         m_controller.nibs += nibsToPurchase;
         m_controller.UpdateUI();
@@ -138,9 +144,11 @@ public class ShopManager : MonoBehaviour
 
         if (m_controller.nibs < nibsToSell){
             //do nothing if not enough nibs
+            audioSource.PlayOneShot(denied);
             return;
         }
 
+        audioSource.PlayOneShot(cashGet);
         m_controller.cash += nibsCost;
         m_controller.nibs -= nibsToSell;
         m_controller.UpdateUI();
@@ -149,28 +157,35 @@ public class ShopManager : MonoBehaviour
     //Called when critter purchased from listing
     public void PurchaseCritter(CritterStats stats){
         if(m_controller.cash < stats.cost || m_controller.slots == m_controller.critterObjects.Count){
+            audioSource.PlayOneShot(denied);
             return;
         }
-
+        audioSource.PlayOneShot(slotGet);
         m_controller.NameCritter(stats);
     }
 
     //Purchases and adds a new slot
     public void PurchaseSlot(){
         if(m_controller.slots >= MAX_SLOTS || m_controller.cash < slotPrices[m_controller.slots - DataManager.START_SLOTS] ){
+            audioSource.PlayOneShot(denied);
             return;
         }
         m_controller.cash -= slotPrices[m_controller.slots - DataManager.START_SLOTS];
         m_controller.slots ++;
         
         slotPriceText.text = m_controller.slots < MAX_SLOTS ? "" + slotPrices[m_controller.slots - DataManager.START_SLOTS] : "N/A";
-        
+        audioSource.PlayOneShot(slotGet);
         m_controller.UpdateUI();
         m_controller.UpdateCritterCounter();
     }
 
     //Called only from special buy button
     public void Victory(){
+        if(m_controller.cash < 99998f){
+            audioSource.PlayOneShot(denied);
+            return;
+        }
+        audioSource.PlayOneShot(slotGet);
         m_controller.Victory();
     }
 

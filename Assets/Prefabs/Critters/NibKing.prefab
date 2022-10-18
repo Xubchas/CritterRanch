@@ -159,3 +159,5 @@ MonoBehaviour:
   anim: {fileID: 3808082699008893068}
   isHungry: 0
   isDead: 0
+  audioSource: {fileID: 0}
+  beep: {fileID: 8300000, guid: 090f9f2cb00270b4abc591caf1bdcc26, type: 3}

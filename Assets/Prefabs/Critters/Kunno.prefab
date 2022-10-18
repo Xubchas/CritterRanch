@@ -133,6 +133,8 @@ MonoBehaviour:
   anim: {fileID: 6144403736014874742}
   isHungry: 0
   isDead: 0
+  audioSource: {fileID: 0}
+  beep: {fileID: 8300000, guid: 090f9f2cb00270b4abc591caf1bdcc26, type: 3}
 --- !u!61 &3362836128450544323
 BoxCollider2D:
   m_ObjectHideFlags: 0

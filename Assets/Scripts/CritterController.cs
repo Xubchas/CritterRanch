@@ -52,6 +52,10 @@ public class CritterController : MonoBehaviour
     public bool isDead;
     public const float HUNGER_THRESHOLD = 0.7f;
 
+    //audio Stuff
+    public AudioSource audioSource;
+    public AudioClip beep;
+
     void Awake(){
         //initialize directions
         directions.Add(UP);
@@ -60,6 +64,7 @@ public class CritterController : MonoBehaviour
         directions.Add(RIGHT);
         //find controller
         m_controller = GameObject.FindGameObjectWithTag("GameController").GetComponent<RanchController>();
+        audioSource = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<AudioSource>();
     }
 
     //Calls all tick methods
@@ -197,6 +202,7 @@ public class CritterController : MonoBehaviour
 
     //click to open info screen for this critter
     void OnMouseDown(){
+        audioSource.PlayOneShot(beep);
         m_controller.OpenInfoPanel(this);
     }
 

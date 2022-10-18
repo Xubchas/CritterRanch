@@ -15,6 +15,9 @@ public class WinScreenManager : MonoBehaviour
     public List<GameObject> texts;
     public List<GameObject> pages;
 
+    public AudioSource audioSource;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +29,7 @@ public class WinScreenManager : MonoBehaviour
         float seconds = Mathf.Floor(time) % 60;
 
         timeText.text = hours.ToString("0") + ":" + minutes.ToString("00") + ":" + seconds.ToString("00");
-        nameText.text = "Ranch: " + DataManager.instance.playerName;
+        nameText.text =  DataManager.instance.playerName;
         StartCoroutine(animateText());
         
     }
@@ -39,7 +42,6 @@ public class WinScreenManager : MonoBehaviour
             timeToWait = 2f;
             if(textIndex == 3){
                 pages[(textIndex/3)-1].SetActive(false);
-                continue;
             }
             if(textIndex == texts.Count){
                 break;
@@ -55,6 +57,7 @@ public class WinScreenManager : MonoBehaviour
         }
 
     }
+
 
 
 }

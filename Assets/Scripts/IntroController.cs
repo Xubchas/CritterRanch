@@ -18,17 +18,22 @@ public class IntroController : MonoBehaviour
 
     private const int TEXTS_PER_PAGE = 3;
 
+    public AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
     {
         Time.timeScale = 1f;
         try{
-            ranchText.text = "Will " + DataManager.instance.playerName + " join the ranks";
+            ranchText.text = "Will "  + DataManager.instance.playerName + " join the ranks";
         }
         catch{
             ranchText.text = "Will My Ranch join the ranks";
         }
+
+        audioSource.volume = DataManager.instance.volume;
+        StartCoroutine(FadeInMusic());
+
     }
 
     public void NotifyEvent(GameObject objectAffected, string eventName){
@@ -58,7 +63,6 @@ public class IntroController : MonoBehaviour
             if((textIndex % 3 == 0) && textIndex != 0)
             {
                 pages[(textIndex/3)-1].SetActive(false);
-                continue;
             }
             if(textIndex == texts.Count){
                 break;
@@ -79,11 +83,37 @@ public class IntroController : MonoBehaviour
 
     void EndIntro(){
         fairy.SetActive(false);
+        StartCoroutine(FadeOutMusic());
         backGround.GetComponent<Animator>().SetTrigger("isOutro");
     }
 
     public void SkipIntro(){
         SceneManager.LoadScene(1);
+    }
+
+    IEnumerator FadeOutMusic(){
+        float startVolume = audioSource.volume;
+ 
+        while (audioSource.volume > 0) {
+            audioSource.volume -= startVolume * Time.deltaTime / 5f;
+ 
+            yield return null;
+        }
+ 
+        audioSource.Stop ();
+    }
+
+    IEnumerator FadeInMusic(){
+        float targetVolume = audioSource.volume;
+        audioSource.volume = 0;
+ 
+        while (audioSource.volume < targetVolume) {
+            audioSource.volume += targetVolume * Time.deltaTime / 2.5f;
+ 
+            yield return null;
+        }
+ 
+        audioSource.volume = targetVolume;
     }
 
 

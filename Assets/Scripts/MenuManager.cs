@@ -22,6 +22,8 @@ public class MenuManager : MonoBehaviour
     public Button continueButton;
 
 
+
+
     void Start(){
         //set volume to default or previously set state
         audioSlider.UpdateVolume(DataManager.instance.volume);
@@ -29,6 +31,7 @@ public class MenuManager : MonoBehaviour
             //set continue button to interactable if there is a save
             continueButton.interactable = true;
         }
+
     }
 
     //called when new game pressed
@@ -61,4 +64,6 @@ public class MenuManager : MonoBehaviour
         Application.OpenURL("https://play.unity.com/u/danbuxta");
 # endif
     }
+
+
 }

@@ -94,7 +94,7 @@ public class DataManager : MonoBehaviour
     void Awake()
     {
         save = null;
-        volume = 10f/15f;
+        volume = 6f/15f;
         //singleton check
         if(instance != null && instance != this){
             Destroy(this.gameObject);

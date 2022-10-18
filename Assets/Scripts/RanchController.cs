@@ -122,6 +122,9 @@ public class RanchController : MonoBehaviour
     //Audio sliders
     public VolumeSlider audioSlider;
 
+    //victory screen
+    public GameObject victoryScreen;
+
 
     // Start is called before the first frame update
     void Start()
@@ -450,8 +453,16 @@ public class RanchController : MonoBehaviour
     public void Victory(){
         if(cash > 99998f){
 
-            SceneManager.LoadScene(2);
+            StartCoroutine(VictoryScreen());
         }
+    }
+
+    IEnumerator VictoryScreen(){
+        while(victoryScreen.transform.position.y < 0){
+            victoryScreen.transform.position += new Vector3 (0, 4, 0);
+            yield return null;
+        }
+        SceneManager.LoadScene(2);
     }
 
 }

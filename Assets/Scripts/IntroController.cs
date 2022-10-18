@@ -22,6 +22,7 @@ public class IntroController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1f;
         try{
             ranchText.text = "Will " + DataManager.instance.playerName + " join the ranks";
         }
@@ -45,18 +46,19 @@ public class IntroController : MonoBehaviour
 
     void StartIntro(){
         fairy.SetActive(true);
-        Debug.Log("started intro");
         StartCoroutine(ScrollText());
     }
 
     IEnumerator ScrollText(){
-        float timeToWait = 2;
-        Debug.Log("started scrolling");
+        float timeToWait = 1f;
+
         while(true){
             yield return new WaitForSeconds(timeToWait);
+            timeToWait = 2f;
             if((textIndex % 3 == 0) && textIndex != 0)
             {
                 pages[(textIndex/3)-1].SetActive(false);
+                continue;
             }
             if(textIndex == texts.Count){
                 break;
@@ -78,6 +80,10 @@ public class IntroController : MonoBehaviour
     void EndIntro(){
         fairy.SetActive(false);
         backGround.GetComponent<Animator>().SetTrigger("isOutro");
+    }
+
+    public void SkipIntro(){
+        SceneManager.LoadScene(1);
     }
 
 

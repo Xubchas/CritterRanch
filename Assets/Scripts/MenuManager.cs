@@ -36,7 +36,7 @@ public class MenuManager : MonoBehaviour
         //default name if none entered
         string name = nameInput.text != emptyInput ? nameInput.text : "My Ranch";
         DataManager.instance.newGame(name);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(3);
     }
 
     //called when continue game pressed
